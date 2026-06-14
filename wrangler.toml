@@ -1,0 +1,12 @@
+name = "saso-dashboard"
+pages_build_output_dir = "saso_dashboard"
+
+[[kv_namespaces]]
+binding = "SASO_STORAGE"
+id = "ea4f014b09244376b000d05207fd187b"
+
+[vars]
+COMPANY_NAME = "RJ Business Solutions"
+COMPANY_WEBSITE = "https://rickjeffersonsolutions.com"
+COMPANY_EMAIL = "rjbizsolution23@gmail.com"
+COMPANY_ADDRESS = "1342 NM 333, Tijeras, New Mexico 87059"

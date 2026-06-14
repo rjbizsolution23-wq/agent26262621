@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme AI Swarm Orchestrator (SASO) — RJ Business Solutions</title>
+    <link rel="stylesheet" href="/index.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand-section">
+                <img src="https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg" alt="RJ Business Solutions" class="company-logo">
+                <div class="brand-text">
+                    <h1>Supreme AI Swarm Orchestrator <span class="badge">SASO v1.0</span></h1>
+                    <p class="company-address">RJ Business Solutions | 1342 NM 333, Tijeras, NM 87059</p>
+                </div>
+            </div>
+            <div class="system-status">
+                <div class="pulse-indicator status-ready" id="status-indicator"></div>
+                <span class="status-label" id="status-text">SYSTEM ONLINE (IDLE)</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <!-- Left Panel: Agent Swarm -->
+            <section class="panel left-panel">
+                <div class="panel-header">
+                    <h2>Agent Swarm Directory</h2>
+                    <span class="count-badge" id="agent-count">0 Agents</span>
+                </div>
+                <div class="panel-body search-container">
+                    <input type="text" id="agent-search" placeholder="Search agents..." class="input-field">
+                </div>
+                <div class="panel-body agent-list" id="agents-container">
+                    <!-- Loaded dynamically -->
+                    <div class="loading-spinner">Loading agent registry...</div>
+                </div>
+            </section>
+
+            <!-- Center Panel: Swarm Visualizer & Logs -->
+            <section class="panel center-panel">
+                <div class="panel-header tab-header">
+                    <button class="tab-btn active" data-tab="graph-tab">Swarm Node Graph</button>
+                    <button class="tab-btn" data-tab="logs-tab">Live Swarm Logs</button>
+                </div>
+                <div class="panel-body tab-content active" id="graph-tab">
+                    <div class="canvas-wrapper">
+                        <canvas id="swarm-canvas"></canvas>
+                        <div class="canvas-overlay">
+                            <p>Hover over nodes to inspect specialized capabilities</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body tab-content" id="logs-tab">
+                    <div class="terminal-container">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">saso-orchestrator@rj-biz-solutions:~</span>
+                            <button class="btn btn-sm btn-clear" id="clear-logs">Clear Logs</button>
+                        </div>
+                        <div class="terminal-body" id="logs-container">
+                            <div class="log-line system">Waiting for task execution...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Controls & Workspace Files -->
+            <section class="panel right-panel">
+                <!-- Swarm Control -->
+                <div class="sub-panel control-panel">
+                    <div class="panel-header">
+                        <h2>Swarm Task Controller</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="task-input">High-Level Prompt / Instruction</label>
+                            <textarea id="task-input" placeholder="What should the agent swarm build or analyze today?" class="input-field textarea-field"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="provider-select">AI Provider</label>
+                                <select id="provider-select" class="input-field select-field">
+                                    <option value="openrouter">OpenRouter (Recommended)</option>
+                                    <option value="groq">Groq AI</option>
+                                    <option value="deepseek">DeepSeek</option>
+                                    <option value="together">Together AI</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="model-select">Model Class</label>
+                                <select id="model-select" class="input-field select-field">
+                                    <option value="coding">Coding (Claude 3.5 Sonnet)</option>
+                                    <option value="reasoning">Reasoning (DeepSeek R1)</option>
+                                    <option value="fast">Fast (Gemini Flash)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group toggle-group">
+                            <div class="toggle-container">
+                                <input type="checkbox" id="autonomous-toggle" class="toggle-checkbox">
+                                <label for="autonomous-toggle" class="toggle-label"></label>
+                            </div>
+                            <div class="toggle-text">
+                                <span class="toggle-title">Autonomous Action Mode</span>
+                                <span class="toggle-desc">Allows swarm to write files and run terminal commands.</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="run-task-btn">Launch Swarm Swarm</button>
+                    </div>
+                </div>
+
+                <!-- API Settings -->
+                <div class="sub-panel keys-panel">
+                    <div class="panel-header collapsable">
+                        <h2>API Configurations</h2>
+                        <span class="toggle-icon">&#9662;</span>
+                    </div>
+                    <div class="panel-body collapsed" id="api-keys-body">
+                        <div class="form-group">
+                            <label for="key-openrouter">OpenRouter Key</label>
+                            <input type="password" id="key-openrouter" placeholder="sk-or-v1-..." class="input-field">
+                        </div>
+                        <div class="form-group">
+                            <label for="key-groq">Groq API Key</label>
+                            <input type="password" id="key-groq" placeholder="gsk_..." class="input-field">
+                        </div>
+                        <button class="btn btn-secondary" id="save-keys-btn">Update API Keys</button>
+                    </div>
+                </div>
+
+                <!-- Workspace Explorer -->
+                <div class="sub-panel explorer-panel">
+                    <div class="panel-header">
+                        <h2>Workspace Output Explorer</h2>
+                        <button class="btn btn-sm" id="refresh-files">Refresh</button>
+                    </div>
+                    <div class="panel-body file-list" id="files-container">
+                        <!-- Loaded dynamically -->
+                        <div class="empty-state">No files generated yet.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Code Viewer Modal -->
+        <div class="modal-backdrop" id="file-modal">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3 id="modal-filename">filename.py</h3>
+                    <button class="modal-close" id="modal-close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <pre><code class="language-code" id="modal-code">Loading...</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/index.js"></script>
+</body>
+</html>

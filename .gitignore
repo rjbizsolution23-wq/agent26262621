@@ -1,0 +1,32 @@
+# Ignore all markdown files
+*.md
+
+# Exclude .env and environment files
+.env
+.env.*
+!.env.example
+
+# Logs and databases
+*.log
+*.sqlite
+__pycache__/
+*.pyc
+
+# Local system files
+.DS_Store
+Thumbs.db
+
+# Exclude all python files by default except our SASO code
+*.py
+!run_saso.py
+!saso_bridge.py
+!saso_orchestrator.py
+!saso_registry.py
+!saso_router.py
+!saso_server.py
+
+# Python environments
+.venv/
+env/
+venv/
+ENV/
