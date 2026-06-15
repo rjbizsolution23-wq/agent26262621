@@ -397,7 +397,19 @@ async function callLLMDirect(systemPrompt, userPrompt, provider, modelKey, env) 
   if (provider === "groq") {
     url = "https://api.groq.com/openai/v1/chat/completions";
     apiKey = env.GROQ_API_KEY;
-    model = "llama-3.3-70b-specdec";
+    if (modelKey === "reasoning") {
+      model = "deepseek-r1-distill-llama-70b";
+    } else {
+      model = "llama-3.3-70b-specdec";
+    }
+  } else {
+    if (modelKey === "reasoning") {
+      model = "deepseek/deepseek-r1";
+    } else if (modelKey === "fast") {
+      model = "google/gemini-2.5-flash";
+    } else {
+      model = "anthropic/claude-3.5-sonnet";
+    }
   }
 
   const res = await fetch(url, {
