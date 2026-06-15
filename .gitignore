@@ -10,9 +10,8 @@
 !SUPPORT.md
 !SECURITY.md
 !CHANGELOG.md
-!docs/COMPLIANCE.md
-!docs/PRIVACY.md
-!docs/TERMS.md
+!docs/
+!docs/*.md
 
 # Exclude .env and environment files
 .env

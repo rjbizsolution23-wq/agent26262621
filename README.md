@@ -29,6 +29,17 @@ The **Supreme AI Swarm Orchestrator (SASO)** is a state-of-the-art multi-agent c
 
 ---
 
+## 📚 Documentation & Reference
+
+For detailed system architectures, configuration setup steps, and compliance reports, review:
+- **System Architecture**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Edge-Local design and data flows.
+- **Local Bridge Setup**: [docs/LOCAL_BRIDGE_SETUP.md](docs/LOCAL_BRIDGE_SETUP.md) — Starting the bridge daemon.
+- **Specialized Agents**: [docs/SPECIALIZED_AGENTS.md](docs/SPECIALIZED_AGENTS.md) — List of the 56 active cognitive agents.
+- **NIST/CMMC Compliance**: [docs/COMPLIANCE.md](docs/COMPLIANCE.md) — Mapping to NIST SP 800-171 controls.
+- **Privacy Policy**: [docs/PRIVACY.md](docs/PRIVACY.md) & **Terms of Service**: [docs/TERMS.md](docs/TERMS.md).
+
+---
+
 ## 🛠️ Getting Started
 
 ### 1. Configure the Cloudflare Edge Worker
