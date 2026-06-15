@@ -31,7 +31,7 @@ class FileViewRequest(BaseModel):
 @app.get("/api/agents")
 def get_agents():
     """Endpoint to list all parsed agents."""
-    registry = AgentRegistry(str(WORKSPACE_PATH))
+    registry = AgentRegistry()
     return registry.list_agents()
 
 @app.get("/api/keys")

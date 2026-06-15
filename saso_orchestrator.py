@@ -9,7 +9,7 @@ from saso_router import AIRouter
 class CognitiveOrchestrator:
     def __init__(self, workspace_path: str = ".", autonomous: bool = False):
         self.workspace_path = Path(workspace_path).resolve()
-        self.registry = AgentRegistry(str(self.workspace_path))
+        self.registry = AgentRegistry()
         self.router = AIRouter()
         self.autonomous = autonomous
         self.log_history = []
