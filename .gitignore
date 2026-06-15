@@ -1,5 +1,18 @@
-# Ignore all markdown files
+# Ignore all markdown files by default
 *.md
+
+# Whitelist clean compliance, governance, and project documentation
+!README.md
+!CLA.md
+!CODE_OF_CONDUCT.md
+!CONTRIBUTING.md
+!GOVERNANCE.md
+!SUPPORT.md
+!SECURITY.md
+!CHANGELOG.md
+!docs/COMPLIANCE.md
+!docs/PRIVACY.md
+!docs/TERMS.md
 
 # Exclude .env and environment files
 .env

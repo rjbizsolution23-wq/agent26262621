@@ -1,0 +1,52 @@
+name: "SBOM & SLSA Provenance Generation"
+
+on:
+  push:
+    branches: [ "main" ]
+  release:
+    types: [ created ]
+
+permissions: read-all
+
+jobs:
+  sbom:
+    name: Generate SBOM
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Generates a CycloneDX SBOM for the codebase dependencies
+      - name: Generate CycloneDX SBOM
+        uses: anchore/sbom-action@v0.17.9
+        with:
+          format: 'cyclonedx-json'
+          output-file: 'sbom.cyclonedx.json'
+
+      - name: Upload SBOM Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.cyclonedx.json
+
+  provenance:
+    name: Generate SLSA Build Provenance
+    needs: [ sbom ]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # Needed to request OIDC token
+      contents: read
+      actions: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Placeholder step illustrating artifact build/generation
+      # before SLSA provenance generation (SLSA requires OIDC verification)
+      - name: Build Artifacts
+        run: |
+          echo "Building SASO release bundles..."
+          mkdir dist
+          tar -czf dist/saso-source.tar.gz run_saso.py saso_bridge.py saso_orchestrator.py saso_registry.py saso_router.py saso_server.py worker.js wrangler.toml

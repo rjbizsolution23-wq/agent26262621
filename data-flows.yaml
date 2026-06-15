@@ -1,0 +1,38 @@
+version: "1.0"
+project: "Supreme AI Swarm Orchestrator"
+owner: "RJ Business Solutions"
+
+data_flows:
+  - id: DF001
+    name: "Agent Registry Synchronization"
+    source: "Local Bridge Daemon (saso_bridge.py)"
+    destination: "Cloudflare Workers KV (SASO_STORAGE)"
+    protocol: "WSS (Secure WebSockets)"
+    data_elements:
+      - "agent_key"
+      - "agent_name"
+      - "agent_capabilities"
+      - "system_prompt"
+    description: "During daemon startup, local agent files are read and cached in Cloudflare KV on the Edge."
+
+  - id: DF002
+    name: "Swarm Orchestration Loop"
+    source: "Dashboard Client"
+    destination: "Cloudflare Edge Worker (_worker.js)"
+    protocol: "WSS (Secure WebSockets)"
+    data_elements:
+      - "user_prompt"
+      - "provider_choice"
+      - "model_choice"
+    description: "Client triggers execution plans and streams live logging tokens back to the dashboard."
+
+  - id: DF003
+    name: "Action Execution Proxying"
+    source: "Cloudflare Edge Worker (_worker.js)"
+    destination: "Local Bridge Daemon (saso_bridge.py)"
+    protocol: "WSS (Secure WebSockets)"
+    data_elements:
+      - "request_id"
+      - "action_type (write_file|read_file|list_dir|run_command)"
+      - "action_parameters (filepath|command|content)"
+    description: "Secure reverse tunnel forwards host execution requests from Cloudflare Workers to the local developer machine."
