@@ -74,10 +74,19 @@ class AIRouter:
         headers = self.get_headers(provider)
         
         # Resolve model key if a general term is used
+        model_mappings = {
+            "llama-3-free": "meta-llama/llama-3-8b-instruct:free",
+            "gemma-2-free": "google/gemma-2-9b-it:free",
+            "qwen-2.5-free": "qwen/qwen-2.5-72b-instruct:free",
+            "mistral-free": "mistralai/mistral-7b-instruct:free",
+            "nvidia-nemotron": "nvidia/llama-3.1-nemotron-70b-instruct"
+        }
         if not model:
             model = self.models.get(provider, {}).get("default")
         elif model in ["fast", "reasoning", "coding"]:
             model = self.models.get(provider, {}).get(model, self.models[provider]["default"])
+        elif model in model_mappings:
+            model = model_mappings[model]
 
         payload = {
             "model": model,
@@ -122,10 +131,20 @@ class AIRouter:
         url = self.get_url(provider)
         headers = self.get_headers(provider)
         
+        # Resolve model key
+        model_mappings = {
+            "llama-3-free": "meta-llama/llama-3-8b-instruct:free",
+            "gemma-2-free": "google/gemma-2-9b-it:free",
+            "qwen-2.5-free": "qwen/qwen-2.5-72b-instruct:free",
+            "mistral-free": "mistralai/mistral-7b-instruct:free",
+            "nvidia-nemotron": "nvidia/llama-3.1-nemotron-70b-instruct"
+        }
         if not model:
             model = self.models.get(provider, {}).get("default")
         elif model in ["fast", "reasoning", "coding"]:
             model = self.models.get(provider, {}).get(model, self.models[provider]["default"])
+        elif model in model_mappings:
+            model = model_mappings[model]
 
         payload = {
             "model": model,

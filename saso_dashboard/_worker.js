@@ -412,7 +412,16 @@ async function callLLMDirect(systemPrompt, userPrompt, provider, modelKey, env) 
       model = "llama-3.3-70b-specdec";
     }
   } else {
-    if (modelKey === "reasoning") {
+    const mappings = {
+      "llama-3-free": "meta-llama/llama-3-8b-instruct:free",
+      "gemma-2-free": "google/gemma-2-9b-it:free",
+      "qwen-2.5-free": "qwen/qwen-2.5-72b-instruct:free",
+      "mistral-free": "mistralai/mistral-7b-instruct:free",
+      "nvidia-nemotron": "nvidia/llama-3.1-nemotron-70b-instruct"
+    };
+    if (mappings[modelKey]) {
+      model = mappings[modelKey];
+    } else if (modelKey === "reasoning") {
       model = "deepseek/deepseek-r1";
     } else if (modelKey === "fast") {
       model = "google/gemini-2.5-flash";
