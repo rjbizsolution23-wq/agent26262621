@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [2.2.0] - 2026-06-16
+
+### Added
+- **Credit Repair CRM (`credit_builder_crm/`)**: A professional Client Relationship Management (CRM) directory structure.
+- **MyFreeScoreNow Integration**: Automated tracking and enrollment checking leveraging affiliate parameters `AID=RickJeffersonSolutions` (PIDs `49914` & `30639`).
+- **Credit Report Analysis & Negatives Extractor**: Built-in logic to pull and isolate negative credit items (charge-offs, late payments, collection accounts).
+- **Dispute Letter Generator**: Dynamic template compilers for Equifax, Experian, and TransUnion dispute packets.
+- **Premium Client Portal Dashboard**: Dark-mode glassmorphic client interface supporting client CRUD, automated dispute checking, dynamic email dispatching via Resend API, and print-ready PDF styling.
+
 ## [2.1.0] - 2026-06-16
 
 ### Added

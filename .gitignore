@@ -23,6 +23,7 @@
 # Logs and databases
 *.log
 *.sqlite
+*.db
 __pycache__/
 *.pyc
 
@@ -39,6 +40,14 @@ Thumbs.db
 !saso_router.py
 !saso_server.py
 !python_harness.py
+
+# Whitelist Credit Repair CRM & Dispute Generator
+!credit_builder_crm/
+!credit_builder_crm/**/*.py
+!credit_builder_crm/requirements.txt
+!credit_builder_crm/static/
+!credit_builder_crm/static/**/*
+!credit_builder_crm/static/*
 
 # Python environments
 .venv/

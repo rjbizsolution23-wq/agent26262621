@@ -1,6 +1,6 @@
-# Implementation Plan — SASO Python Execution Harness
+# Implementation Plan — Credit Repair CRM & Dispute Generator
 
-Architecting and integrating a production-grade, state-of-the-art **SASO Python Execution Harness** into the **Supreme AI Swarm Orchestrator (SASO)** ecosystem. This system enables specialized agents to compile, execute, test, and verify Python code (such as FastAPI applications, databases, or script integrations) autonomously via the local bridge daemon.
+Architecting and building a state-of-the-art, high-end **Credit Repair CRM, Dispute Generator & Client Portal** application. The system manages clients, integrates the mandatory **MyFreeScoreNow** affiliate enrollment flows, performs credit report item analysis, and generates professional, print-ready bureau dispute letters.
 
 📍 1342 NM 333, Tijeras, New Mexico 87059 | 🌐 [rickjeffersonsolutions.com](https://rickjeffersonsolutions.com)
 
@@ -9,75 +9,63 @@ Architecting and integrating a production-grade, state-of-the-art **SASO Python 
 ## User Review Required
 
 > [!IMPORTANT]
-> **Local Code Execution Scope**
-> - The Python harness runs python commands directly on the host machine using the active python interpreter where the bridge daemon is running.
-> - Ensure that any third-party dependencies required by the agent's code are installed in the local environment, or let the agent run standard command execution to install libraries (e.g. `pip install`).
-
----
-
-## Open Questions
-
-> [!NOTE]
-> None. The current design allows the agent to run both inline code and script files directly under the current active workspace directory.
+> **MyFreeScoreNow Integration & Affiliate Details**
+> - The application will integrate the official **MyFreeScoreNow** enrollment URLs:
+>   - Primary: `https://myfreescorenow.com/enroll/?AID=RickJeffersonSolutions&PID=49914`
+>   - High-Value: `https://myfreescorenow.com/enroll/?AID=RickJeffersonSolutions&PID=30639`
+> - We will use the **IGLOO JavaScript Library** or iframe integration patterns inside the client portal to walk users through the 4-step credit check signup.
 
 ---
 
 ## Proposed Changes
 
-We will create the Python execution harness script and modify the local bridge daemon, the orchestrator, and the Cloudflare Edge Worker files to support this new execution capability.
+We will create a new subfolder `credit_builder_crm/` containing the FastAPI backend, SQLite database layer, and a beautiful premium dashboard UI.
 
-### 1. Python Execution Harness
+### 1. Backend Layer
 
-#### [NEW] [python_harness.py](file:///c:/Users/DELL/Downloads/agent26262621/python_harness.py)
-- Build a robust execution module that runs Python code in an isolated subprocess.
-- Capture stdout, stderr, execution duration, and returncode.
-- Clean up any generated temporary runtime files securely.
+#### [NEW] [main.py](file:///c:/Users/DELL/Downloads/agent26262621/credit_builder_crm/main.py)
+- Main FastAPI script routing API requests.
+- CRUD endpoints for managing Clients (name, contact, status, scores).
+- Dispute Generator router matching bureau addresses (Experian, TransUnion, Equifax) and generating customized templates (Late Payments, Collections, Hard Inquiries, Public Records).
+- Server configuration to serve the static dashboard.
+
+#### [NEW] [models.py](file:///c:/Users/DELL/Downloads/agent26262621/credit_builder_crm/models.py)
+- SQLite database session setup and table definitions using Python's standard `sqlite3` driver.
+- Schema definitions for:
+  - `clients`: ID, Name, Email, Phone, MyFreeScoreNow_ID, Current_Scores, Created_At.
+  - `disputes`: ID, Client_ID, Bureau, Item_Name, Account_Number, Dispute_Reason, Status, Letter_Text.
+  - `letters`: ID, Client_ID, Bureau, Content, Generated_At.
+
+#### [NEW] [myfreescorenow.py](file:///c:/Users/DELL/Downloads/agent26262621/credit_builder_crm/myfreescorenow.py)
+- Integrates API endpoints pointing to `https://api.myfreescorenow.com/api` using credentials from environment variables.
+- Processes lead registrations and redirects to credit verification portals.
 
 ---
 
-### 2. Local Bridge Daemon
+### 2. Frontend Layer (Tailwind & JavaScript)
 
-#### [MODIFY] [saso_bridge.py](file:///c:/Users/DELL/Downloads/agent26262621/saso_bridge.py)
-- Register `run_python_code` as an allowed action.
-- Import `python_harness` dynamically to handle inline script execution and workspace script file runs.
-- Format execution outputs (stdout, stderr, duration, returncode) cleanly back to the Edge coordinator.
+#### [NEW] [index.html](file:///c:/Users/DELL/Downloads/agent26262621/credit_builder_crm/static/index.html)
+- A highly visual dashboard featuring dark-mode glassmorphism, responsive navigation grids, and status widgets.
+- Three major portals:
+  - **Client CRM Portal**: Manage client lists, update scores, track dispute progress.
+  - **MyFreeScoreNow Portal**: Enrollment walkthrough module showing user affiliate status.
+  - **Dispute Letter Generator**: Interactive checklist to select bureaus, dispute items, reasons, and preview/print dispute letters.
 
----
-
-### 3. Edge Worker & Orchestrator
-
-#### [MODIFY] [saso_orchestrator.py](file:///c:/Users/DELL/Downloads/agent26262621/saso_orchestrator.py)
-- Update parser pattern to extract `RUN_PYTHON` action tags.
-  - Supports inline:
-    ```
-    RUN_PYTHON: optional_path.py
-    Content:
-    [code]
-    [END_RUN_PYTHON]
-    ```
-  - Supports simple script runs:
-    ```
-    RUN_PYTHON: path.py
-    ```
-- Add the `run_python_code` execution type logic.
-- Inject harness tool definitions into the agent prompt so they know how to run Python tests.
-
-#### [MODIFY] [worker.js](file:///c:/Users/DELL/Downloads/agent26262621/worker.js)
-- Add matching parser pattern for `RUN_PYTHON` tags.
-- Update agent system prompts on the Edge to describe the new `RUN_PYTHON` tag syntax.
-
-#### [MODIFY] [_worker.js](file:///c:/Users/DELL/Downloads/agent26262621/saso_dashboard/_worker.js)
-- Match changes made to the root `worker.js` for Cloudflare Pages deployment parity.
+#### [NEW] [app.js](file:///c:/Users/DELL/Downloads/agent26262621/credit_builder_crm/static/app.js)
+- Core client logic handling:
+  - Dynamic CRM UI updates and API fetching.
+  - Dispute letter preview rendering.
+  - Print triggers with standard paper style overrides (clean styling optimized for physical printing).
 
 ---
 
 ## Verification Plan
 
 ### Automated Tests
-- Run `python python_harness.py --code "print('Hello World')"` to verify stdout capturing.
-- Run `python python_harness.py --code "raise Exception('Test Failure')"` to verify error capturing.
+- Test database connection and table initialization.
+- Test PDF/Print CSS rendering to ensure bureau mail format outputs correctly.
 
 ### Manual Verification
-1. Run local uvicorn server: `python run_saso.py`.
-2. Start the local bridge daemon: `python saso_bridge.py`.
-3. Submit a task in the dashboard like: `"Execute python script inline to verify math equations"` and check that the agent prints thoughts, uses `RUN_PYTHON`, gets results, and finishes.
+1. Run `python main.py` in the `credit_builder_crm/` folder.
+2. Open `http://127.0.0.1:8001` in the browser.
+3. Test registering a client, clicking "MyFreeScoreNow Report Check", generating a collection dispute letter, and verifying the Print layout window.
