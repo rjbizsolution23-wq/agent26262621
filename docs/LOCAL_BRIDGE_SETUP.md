@@ -37,3 +37,22 @@ To enable the Cloudflare Edge dashboard to compile code, write files, and execut
   ```powershell
   python -u saso_bridge.py
   ```
+
+---
+
+## 🐍 Python Swarm Execution Harness (`python_harness.py`)
+
+SASO includes a specialized Python Execution Harness (`python_harness.py`) that executes raw Python code blocks or script files dynamically.
+
+### Run Code Inline
+You can verify the harness CLI execution directly:
+```bash
+python python_harness.py --code "print('Hello Swarm')"
+```
+
+### Run Script File
+You can also run a pre-existing workspace script file through the harness CLI:
+```bash
+python python_harness.py --file path/to/script.py
+```
+This isolates execution inside a subprocess under the active workspace boundaries, capturing all outputs, error traces, return codes, and execution durations to feed back to the edge swarm coordinator.

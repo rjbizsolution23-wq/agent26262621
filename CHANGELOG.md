@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [2.1.0] - 2026-06-16
+
+### Added
+- **Python Execution Harness (`python_harness.py`)**: Subprocess execution harness for secure isolated python testing and compilation runs.
+- **Run Python Code Routing**: Multi-agent tag parser for `RUN_PYTHON` action routing from Cloudflare Edge down to the local host machine.
+
 ## [2.0.0] - 2026-06-14
 
 This is the initial production-ready release of the Cloudflare-deployed Swarm Orchestrator, completely rebuilt under RJ Business Solutions standards.
