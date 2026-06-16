@@ -100,6 +100,35 @@ class CognitiveOrchestrator:
                 "command": command
             })
 
+        # Parse RUN_PYTHON inline: RUN_PYTHON: <path>\nContent:\n<code>\n[END_RUN_PYTHON]
+        inline_ranges = []
+        run_py_inline_pattern = r"RUN_PYTHON:\s*([^\n]*)\s*\n\s*Content:\s*\n(.*?)\n\s*\[END_RUN_PYTHON\]"
+        for match in re.finditer(run_py_inline_pattern, text, re.DOTALL | re.IGNORECASE):
+            path = match.group(1).strip()
+            content = match.group(2)
+            actions.append({
+                "type": "run_python_code",
+                "path": path if path else None,
+                "content": content
+            })
+            inline_ranges.append((match.start(), match.end()))
+
+        # Parse RUN_PYTHON simple file run: RUN_PYTHON: <path>
+        run_py_simple_pattern = r"RUN_PYTHON:\s*([^\n]+)"
+        for match in re.finditer(run_py_simple_pattern, text, re.IGNORECASE):
+            path = match.group(1).strip()
+            is_inline = False
+            for start, end in inline_ranges:
+                if start <= match.start() <= end:
+                    is_inline = True
+                    break
+            if not is_inline:
+                actions.append({
+                    "type": "run_python_code",
+                    "path": path,
+                    "content": None
+                })
+
         return actions
 
     def execute_action(self, action: Dict[str, Any]) -> str:
@@ -220,6 +249,42 @@ class CognitiveOrchestrator:
                 self.log(f"Command failed: {e}", "error")
                 return f"Error executing command: {e}"
 
+        elif action["type"] == "run_python_code":
+            path = action.get("path")
+            content = action.get("content")
+            if not self.autonomous:
+                self.log(f"Skip running python code (Autonomous mode disabled).", "warning")
+                return "Python code execution skipped (Autonomous mode disabled)."
+
+            self.log(f"Executing Python script (path={path}, inline={bool(content)})...", "command")
+            try:
+                import python_harness
+                if content:
+                    if path:
+                        full_path = (self.workspace_path / path).resolve()
+                        if not str(full_path).startswith(str(self.workspace_path)):
+                            return f"Error: Permission denied. Path {path} goes outside workspace."
+                        full_path.parent.mkdir(parents=True, exist_ok=True)
+                        full_path.write_text(content, encoding="utf-8")
+                        res = python_harness.run_file(str(full_path), timeout=90)
+                    else:
+                        res = python_harness.run_code(content, timeout=90)
+                else:
+                    if not path:
+                        return "Error: Missing script content or path."
+                    res = python_harness.run_file(path, timeout=90)
+                
+                output = f"Stdout:\n{res.get('stdout')}\n\nStderr:\n{res.get('stderr')}\n\nDuration: {res.get('duration'):.3f}s, Return Code: {res.get('returncode')}"
+                if res.get("success"):
+                    self.log("Python script succeeded.", "success")
+                    return f"Success: Python script ran successfully.\nOutput:\n{output}"
+                else:
+                    self.log(f"Python script failed with code {res.get('returncode')}", "error")
+                    return f"Error: Python script failed with code {res.get('returncode')}\nOutput:\n{output}"
+            except Exception as e:
+                self.log(f"Python script harness run failed: {e}", "error")
+                return f"Error executing python harness: {e}"
+
         return "Error: Unknown action type."
 
     def execute_swarm_task(self, user_request: str, provider: str = "openrouter", model: str = None) -> Generator[Dict[str, str], None, None]:
@@ -308,6 +373,15 @@ class CognitiveOrchestrator:
                 "[END_REQUEST]\n\n"
                 "5. To execute terminal commands or run processes:\n"
                 "RUN_COMMAND: your command string here\n\n"
+                "6. To execute Python code or scripts securely using our python agent harness:\n"
+                "Inline python code block execution:\n"
+                "RUN_PYTHON: optional/script/path.py\n"
+                "Content:\n"
+                "import sys\n"
+                "print('Hello from the harness!')\n"
+                "[END_RUN_PYTHON]\n\n"
+                "Or run a pre-existing script file:\n"
+                "RUN_PYTHON: relative/path/to/script.py\n\n"
                 "You can output multiple actions in a single turn. "
                 "All commands will execute in the workspace root. Ensure all code is production ready."
             )

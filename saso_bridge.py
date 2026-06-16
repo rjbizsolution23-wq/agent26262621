@@ -171,6 +171,38 @@ class SASOBridge:
                 print(f"[-] Command failed: {e}")
                 return {"error": f"Error executing command: {e}"}
 
+        elif action_type == "run_python_code":
+            path = action.get("path")
+            content = action.get("content")
+            print(f"[*] Executing python action. Path: {path}, Has Content: {bool(content)}")
+            try:
+                import python_harness
+                if content:
+                    if path:
+                        full_path = (WORKSPACE_PATH / path).resolve()
+                        if not str(full_path).startswith(str(WORKSPACE_PATH)):
+                            return {"error": f"Permission denied. Path {path} goes outside workspace."}
+                        full_path.parent.mkdir(parents=True, exist_ok=True)
+                        full_path.write_text(content, encoding="utf-8")
+                        res = python_harness.run_file(str(full_path), timeout=90)
+                    else:
+                        res = python_harness.run_code(content, timeout=90)
+                else:
+                    if not path:
+                        return {"error": "Missing python code content or file path."}
+                    res = python_harness.run_file(path, timeout=90)
+                
+                output = f"Stdout:\n{res.get('stdout')}\n\nStderr:\n{res.get('stderr')}\n\nDuration: {res.get('duration'):.3f}s, Return Code: {res.get('returncode')}"
+                if res.get("success"):
+                    print("[+] Python script succeeded.")
+                    return {"result": {"output": output}}
+                else:
+                    print(f"[-] Python script failed: {res.get('stderr')}")
+                    return {"result": {"output": output, "error": f"Python script failed with code {res.get('returncode')}"}}
+            except Exception as e:
+                print(f"[-] Python harness failed: {e}")
+                return {"error": f"Error executing python harness: {e}"}
+
         return {"error": f"Unknown action type: {action_type}"}
 
     async def run(self):

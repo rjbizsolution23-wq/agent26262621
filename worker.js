@@ -295,6 +295,15 @@ async function runEdgeSwarm(clientSocket, userRequest, provider, modelKey, auton
       "[END_REQUEST]\n\n" +
       "5. To execute terminal commands or run processes:\n" +
       "RUN_COMMAND: your command string here\n\n" +
+      "6. To execute Python code or scripts securely using our python agent harness:\n" +
+      "Inline python code block execution:\n" +
+      "RUN_PYTHON: optional/script/path.py\n" +
+      "Content:\n" +
+      "import sys\n" +
+      "print('Hello from the harness!')\n" +
+      "[END_RUN_PYTHON]\n\n" +
+      "Or run a pre-existing script file:\n" +
+      "RUN_PYTHON: relative/path/to/script.py\n\n" +
       "You can output multiple actions in a single turn. Ensure all code is production ready."
     );
 
@@ -491,6 +500,22 @@ function parseActions(text) {
   const cmdMatches = [...text.matchAll(/RUN_COMMAND:\s*([^\n]+)/gim)];
   cmdMatches.forEach(m => {
     actions.push({ type: "run_command", command: m[1].trim() });
+  });
+
+  // RUN_PYTHON inline
+  const runPyInlineMatches = [...text.matchAll(/RUN_PYTHON:\s*([^\n]*)\nContent:\n(.*?)\n\s*\[END_RUN_PYTHON\]/gims)];
+  runPyInlineMatches.forEach(m => {
+    actions.push({ type: "run_python_code", path: m[1].trim() || null, content: m[2] });
+  });
+
+  // RUN_PYTHON simple file run
+  const runPySimpleMatches = [...text.matchAll(/RUN_PYTHON:\s*([^\n]+)/gim)];
+  runPySimpleMatches.forEach(m => {
+    const startIdx = m.index;
+    const afterText = text.substring(startIdx, startIdx + 100);
+    if (!/RUN_PYTHON:\s*[^\n]*\nContent:/i.test(afterText)) {
+      actions.push({ type: "run_python_code", path: m[1].trim(), content: null });
+    }
   });
 
   return actions;

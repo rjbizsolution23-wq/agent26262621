@@ -36,6 +36,7 @@ Thumbs.db
 !saso_registry.py
 !saso_router.py
 !saso_server.py
+!python_harness.py
 
 # Python environments
 .venv/
