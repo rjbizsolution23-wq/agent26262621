@@ -20,7 +20,7 @@ jobs:
 
       # Generates a CycloneDX SBOM for the codebase dependencies
       - name: Generate CycloneDX SBOM
-        uses: anchore/sbom-action@v0.17.9
+        uses: anchore/sbom-action@v0.24.0
         with:
           format: 'cyclonedx-json'
           output-file: 'sbom.cyclonedx.json'
