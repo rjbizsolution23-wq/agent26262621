@@ -1,0 +1,3 @@
+# Exclude Cloudflare Pages edge handler from Workers Assets
+# (API logic lives in the root worker.js, not here)
+_worker.js

@@ -1,12 +1,30 @@
-name = "saso-dashboard"
-pages_build_output_dir = "saso_dashboard"
+name = "saso-worker"
+main = "worker.js"
+compatibility_date = "2025-06-22"
 
+# Workers Assets — serves saso_dashboard/ static files from the same origin
+[assets]
+directory = "./saso_dashboard"
+binding = "ASSETS"
+
+# KV Namespace — agent registry cache + user-saved API keys
 [[kv_namespaces]]
 binding = "SASO_STORAGE"
 id = "ea4f014b09244376b000d05207fd187b"
 
+# Durable Objects — persistent WebSocket session room (bridge + client connections)
+[[durable_objects.bindings]]
+name = "SASO_ROOM"
+class_name = "SASORoomDO"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["SASORoomDO"]
+
+# Company identity vars (non-secret)
 [vars]
-COMPANY_NAME = "RJ Business Solutions"
+COMPANY_NAME    = "RJ Business Solutions"
+COMPANY_OWNER   = "Rick Jefferson"
 COMPANY_WEBSITE = "https://rickjeffersonsolutions.com"
-COMPANY_EMAIL = "rjbizsolution23@gmail.com"
+COMPANY_EMAIL   = "rjbizsolution23@gmail.com"
 COMPANY_ADDRESS = "1342 NM 333, Tijeras, New Mexico 87059"

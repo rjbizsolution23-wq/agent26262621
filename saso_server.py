@@ -174,5 +174,5 @@ async def websocket_logs(websocket: WebSocket):
 def get_index():
     return FileResponse(DASHBOARD_PATH / "index.html")
 
-# Mount dashboard assets
-app.mount("/", StaticFiles(directory=str(DASHBOARD_PATH)), name="static")
+# Mount dashboard assets at /static to avoid shadowing API routes
+app.mount("/static", StaticFiles(directory=str(DASHBOARD_PATH)), name="static")
