@@ -1,0 +1,132 @@
+/* 
+=============================================================================
+Startup Founder Tool Suite CSS Custom Styles
+Rick Jefferson | RJ Business Solutions
+📍 1342 NM 333, Tijeras, New Mexico 87059
+=============================================================================
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --color-gold-light: #f6e093;
+  --color-gold: #d4af37;
+  --color-gold-dark: #aa841c;
+  --color-navy-dark: #0a1128;
+  --color-navy: #001f3f;
+  --color-navy-light: #1c2d5a;
+  --font-sans: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-navy-dark);
+  color: #f8fafc;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(28, 45, 90, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(28, 45, 90, 0.6);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 12px 40px 0 rgba(212, 175, 55, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Gold Text Gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gold Border Style */
+.border-gold-glow {
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.border-gold-glow:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+  outline: none;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-navy-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-light);
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Custom Slide Show Transitions */
+.slide-enter {
+  opacity: 0;
+  transform: scale(0.98) translateY(10px);
+}
+
+.slide-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* Print CSS Overrides */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-area {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .print-area * {
+    color: black !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+}

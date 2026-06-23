@@ -176,3 +176,6 @@ def get_index():
 
 # Mount dashboard assets at /static to avoid shadowing API routes
 app.mount("/static", StaticFiles(directory=str(DASHBOARD_PATH)), name="static")
+
+# Serve Founder Tool Suite static files directly at /founder
+app.mount("/founder", StaticFiles(directory=str(WORKSPACE_PATH / "founder_tool_suite"), html=True), name="founder")

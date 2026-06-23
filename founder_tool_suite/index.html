@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Founder Tool Suite — RJ Business Solutions</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#050a15',
+              900: '#0b1329',
+              800: '#111d3f',
+              700: '#1d2e5c',
+              600: '#2b3f75'
+            },
+            gold: {
+              100: '#f7e39a',
+              200: '#f5d870',
+              500: '#d4af37',
+              600: '#b5932a',
+              700: '#91721b'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Outfit', 'sans-serif'],
+            mono: ['Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- Marked.js Markdown Parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="bg-navy-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-gold-500 selection:text-navy-950">
+
+  <!-- Header Header -->
+  <header class="no-print border-b border-navy-700/50 bg-navy-900/80 backdrop-blur-md sticky top-0 z-40 w-full px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <img src="https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg" alt="RJ Business Solutions Logo" class="h-10 w-10 rounded-full border border-gold-500/50 shadow-md">
+      <div>
+        <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+          STARTUP FOUNDER <span class="text-gold-500 font-extrabold text-xs bg-gold-500/10 px-2 py-0.5 rounded-full border border-gold-500/30">TOOL SUITE</span>
+        </h1>
+        <p class="text-xs text-slate-400">Architected by Rick Jefferson | RJ Business Solutions</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-4 text-xs">
+      <span class="flex items-center gap-1.5 text-emerald-400 font-medium">
+        <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Ecosystem Bridge: Active
+      </span>
+      <a href="https://rickjeffersonsolutions.com" target="_blank" class="px-3 py-1.5 rounded-md bg-navy-800 hover:bg-navy-700 border border-gold-500/30 text-gold-500 font-semibold hover:border-gold-500 transition duration-150">
+        rickjeffersonsolutions.com
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Container Grid -->
+  <div class="flex-1 flex flex-col md:flex-row no-print">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-80 bg-navy-900/60 border-r border-navy-700/50 p-4 overflow-y-auto flex flex-col gap-2 max-h-[calc(100vh-73px)]">
+      <div class="px-3 py-2">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Startup Resources</h2>
+        <p class="text-[10px] text-slate-500 mt-0.5">Select a form, agreement, or model</p>
+      </div>
+      
+      <div class="flex flex-col gap-1" id="tools-nav">
+        <!-- Dynamic tools list rendered by JS -->
+      </div>
+    </aside>
+
+    <!-- Workspace Panel -->
+    <main class="flex-1 flex flex-col lg:flex-row overflow-hidden max-h-[calc(100vh-73px)]">
+      
+      <!-- Input Forms & Parameters Column -->
+      <section class="w-full lg:w-5/12 border-b lg:border-b-0 lg:border-r border-navy-700/50 p-6 overflow-y-auto flex flex-col gap-6 bg-navy-900/35">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-500" id="current-tool-category">Module</span>
+          <h2 class="text-2xl font-bold text-white mt-1" id="current-tool-name">Select a Tool</h2>
+          <p class="text-xs text-slate-400 mt-1" id="current-tool-desc">Fill out the variables to dynamically compile the draft template below.</p>
+        </div>
+
+        <form id="variables-form" onsubmit="event.preventDefault();" class="flex flex-col gap-4">
+          <!-- Dynamic variables fields compiled by JS -->
+        </form>
+
+        <!-- Calculators and Dashboards widget injection -->
+        <div id="calculator-widgets" class="hidden flex flex-col gap-4 p-4 rounded-lg bg-navy-800/40 border border-navy-700/70">
+          <!-- Live figures injected here -->
+        </div>
+      </section>
+
+      <!-- Preview Column -->
+      <section class="flex-1 p-6 overflow-y-auto flex flex-col gap-4 bg-navy-950">
+        <div class="flex items-center justify-between border-b border-navy-800 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="inline-block h-2 w-2 rounded-full bg-gold-500 shadow-[0_0_8px_#d4af37]"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Live Draft Preview</span>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="downloadMarkdown()" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-md bg-navy-800 border border-navy-700 hover:bg-navy-700 hover:border-gold-500/50 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download MD
+            </button>
+            <button onclick="triggerPrint()" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-md bg-gold-500 text-navy-950 hover:bg-gold-200 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print / Save PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Pitch Deck Visual Slider Overlay Button -->
+        <div id="deck-view-btn-container" class="hidden">
+          <button onclick="startPitchDeckPresentation()" class="w-full py-2 bg-gradient-to-r from-gold-600 to-gold-500 text-navy-950 font-bold rounded-md text-sm hover:from-gold-200 hover:to-gold-100 transition shadow-md flex items-center justify-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Launch Fullscreen Pitch Deck Presentation Mode
+          </button>
+        </div>
+
+        <!-- Rendered HTML Output Container -->
+        <div id="preview-panel" class="prose prose-invert max-w-none text-slate-300 leading-relaxed font-sans select-text p-6 bg-navy-900/20 rounded-lg border border-navy-800/80">
+          <!-- Live generated document HTML will render here -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Fullscreen Pitch Deck Presentation Overlay -->
+  <div id="pitchdeck-modal" class="fixed inset-0 bg-navy-950 z-50 hidden flex flex-col justify-between p-12 select-none">
+    <!-- Slide Header -->
+    <div class="flex justify-between items-center border-b border-navy-800 pb-4">
+      <span class="text-sm font-semibold text-gold-500 uppercase tracking-widest" id="deck-slide-logo">ABC Innovations Pitch Deck</span>
+      <button onclick="closePitchDeckPresentation()" class="text-slate-400 hover:text-white p-2 text-xl font-bold">✕ Close</button>
+    </div>
+
+    <!-- Slide Content Area -->
+    <div class="flex-1 flex flex-col justify-center items-center text-center px-6">
+      <div id="deck-slide-container" class="max-w-4xl slide-enter slide-active">
+        <!-- Injected Slide HTML -->
+      </div>
+    </div>
+
+    <!-- Slide Navigation Footer -->
+    <div class="flex justify-between items-center border-t border-navy-800 pt-6">
+      <div class="text-slate-400 text-sm">
+        Slide <span id="deck-current-slide" class="text-gold-500 font-bold">1</span> of <span id="deck-total-slides" class="font-bold">4</span>
+      </div>
+      <div class="flex gap-4">
+        <button id="deck-prev-btn" onclick="prevSlide()" class="px-6 py-2.5 rounded-lg bg-navy-850 hover:bg-navy-700 text-slate-200 border border-navy-700 transition font-bold disabled:opacity-40 disabled:pointer-events-none">
+          ← Previous
+        </button>
+        <button id="deck-next-btn" onclick="nextSlide()" class="px-6 py-2.5 rounded-lg bg-gold-500 text-navy-950 hover:bg-gold-200 transition font-bold">
+          Next →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print Target Container -->
+  <div id="print-target" class="hidden print-area p-8 text-black prose prose-slate"></div>
+
+  <!-- Footer -->
+  <footer class="no-print mt-auto border-t border-navy-800/80 bg-navy-950 p-6 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+    <div class="flex flex-col gap-1">
+      <p>&copy; 2026 RJ Business Solutions. All rights reserved.</p>
+      <p>📍 1342 NM 333, Tijeras, New Mexico 87059 | 📧 <a href="mailto:rjbizsolution23@gmail.com" class="hover:text-gold-500">rjbizsolution23@gmail.com</a></p>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="https://rickjeffersonsolutions.com" target="_blank" class="hover:text-gold-500 transition">Company Website</a>
+      <span>|</span>
+      <a href="https://github.com/rjbizsolution23-wq" target="_blank" class="hover:text-gold-500 transition">GitHub Profile</a>
+    </div>
+  </footer>
+
+  <!-- Code dependencies scripts imports -->
+  <script src="calculator.js"></script>
+  <script src="docs_data.js"></script>
+  
+  <!-- App Frontend Execution Logic -->
+  <script>
+    let activeTool = null;
+    let activeSlideIndex = 0;
+    const slidesData = [];
+
+    // Initialize application
+    document.addEventListener("DOMContentLoaded", () => {
+      renderToolsNavigation();
+      selectTool(FOUNDER_TOOLS[0].id);
+      
+      // Listen for keyboard slides navigation
+      document.addEventListener("keydown", (e) => {
+        const modal = document.getElementById("pitchdeck-modal");
+        if (!modal.classList.contains("hidden")) {
+          if (e.key === "ArrowRight" || e.key === " ") {
+            nextSlide();
+          } else if (e.key === "ArrowLeft") {
+            prevSlide();
+          } else if (e.key === "Escape") {
+            closePitchDeckPresentation();
+          }
+        }
+      });
+    });
+
+    // Populate Sidebar items
+    function renderToolsNavigation() {
+      const nav = document.getElementById("tools-nav");
+      nav.innerHTML = "";
+      
+      FOUNDER_TOOLS.forEach(tool => {
+        const btn = document.createElement("button");
+        btn.id = `nav-btn-${tool.id}`;
+        btn.onclick = () => selectTool(tool.id);
+        btn.className = "w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold flex items-center justify-between border border-transparent transition text-slate-400 hover:text-white hover:bg-navy-800/40";
+        btn.innerHTML = `
+          <span>${tool.name}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="opacity-40 transition-transform group-hover:translate-x-0.5"><polyline points="9 18 15 12 9 6"/></svg>
+        `;
+        nav.appendChild(btn);
+      });
+    }
+
+    // Handle tool switching
+    function selectTool(toolId) {
+      activeTool = FOUNDER_TOOLS.find(t => t.id === toolId);
+      if (!activeTool) return;
+      
+      // Update sidebar visual active state
+      FOUNDER_TOOLS.forEach(t => {
+        const navBtn = document.getElementById(`nav-btn-${t.id}`);
+        if (navBtn) {
+          if (t.id === toolId) {
+            navBtn.className = "w-full text-left px-3 py-2.5 rounded-lg text-xs font-bold flex items-center justify-between bg-navy-800 text-gold-500 border border-gold-500/30 shadow-sm";
+          } else {
+            navBtn.className = "w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold flex items-center justify-between border border-transparent transition text-slate-400 hover:text-white hover:bg-navy-800/40";
+          }
+        }
+      });
+      
+      // Update tool header
+      document.getElementById("current-tool-name").innerText = activeTool.name;
+      document.getElementById("current-tool-desc").innerText = activeTool.description;
+      
+      // Render variable inputs
+      renderFormFields(activeTool.fields);
+      
+      // Show/Hide slide presentation launcher button
+      const deckBtn = document.getElementById("deck-view-btn-container");
+      if (activeTool.id === "pitch_deck") {
+        deckBtn.classList.remove("hidden");
+      } else {
+        deckBtn.classList.add("hidden");
+      }
+      
+      // Update preview compilation
+      updatePreview();
+    }
+
+    // Build form inputs
+    function renderFormFields(fields) {
+      const form = document.getElementById("variables-form");
+      form.innerHTML = "";
+      
+      fields.forEach(f => {
+        const div = document.createElement("div");
+        div.className = "flex flex-col gap-1.5";
+        
+        const label = document.createElement("label");
+        label.className = "text-xs font-bold text-slate-300";
+        label.innerText = f.label;
+        
+        let input;
+        if (f.type === "textarea") {
+          input = document.createElement("textarea");
+          input.rows = 3;
+          input.className = "w-full px-3 py-2 rounded-lg bg-navy-900 border border-navy-700 text-xs text-white placeholder-slate-500 focus:border-gold-500 focus:outline-none transition duration-150";
+        } else {
+          input = document.createElement("input");
+          input.type = f.type;
+          input.className = "w-full px-3 py-2 rounded-lg bg-navy-900 border border-navy-700 text-xs text-white placeholder-slate-500 focus:border-gold-500 focus:outline-none transition duration-150";
+        }
+        
+        input.id = `input-${f.id}`;
+        input.value = f.default;
+        input.oninput = () => {
+          updatePreview();
+          updateLiveCalculations();
+        };
+        
+        div.appendChild(label);
+        div.appendChild(input);
+        form.appendChild(div);
+      });
+
+      updateLiveCalculations();
+    }
+
+    // Handle updates of special calculation summaries
+    function updateLiveCalculations() {
+      const calcContainer = document.getElementById("calculator-widgets");
+      calcContainer.innerHTML = "";
+      
+      const formData = getFormData();
+      
+      if (activeTool.id === "cap_table") {
+        calcContainer.classList.remove("hidden");
+        const list = [
+          { name: "Founder 1", sharesHeld: Number(formData.founder1Shares) },
+          { name: "Founder 2", sharesHeld: Number(formData.founder2Shares) },
+          { name: "Founder 3", sharesHeld: Number(formData.founder3Shares) },
+          { name: "Angel Investor", sharesHeld: Number(formData.investorShares) },
+          { name: "ESOP Pool", sharesHeld: Number(formData.esopPoolShares) }
+        ];
+        const res = window.calculateCapTable(Number(formData.authCapital), list);
+        
+        calcContainer.innerHTML = `
+          <h4 class="text-xs font-bold text-gold-500 mb-2 uppercase tracking-wide">Live Cap Table Summary</h4>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="text-slate-400">Total Issued Shares:</div>
+            <div class="text-white font-semibold text-right">${res.totalSharesIssued.toLocaleString()}</div>
+            <div class="text-slate-400">Available Treasury Shares:</div>
+            <div class="text-white font-semibold text-right">${res.remainingUnissued.toLocaleString()}</div>
+          </div>
+          <div class="mt-3 flex flex-col gap-1.5">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Dilution Spread:</div>
+            <div class="h-2 w-full rounded-full bg-navy-900 overflow-hidden flex">
+              <div class="h-full bg-amber-400" style="width: ${res.sharesList[0].dilutionPercentage}%"></div>
+              <div class="h-full bg-amber-500" style="width: ${res.sharesList[1].dilutionPercentage}%"></div>
+              <div class="h-full bg-yellow-600" style="width: ${res.sharesList[2].dilutionPercentage}%"></div>
+              <div class="h-full bg-emerald-500" style="width: ${res.sharesList[3].dilutionPercentage}%"></div>
+              <div class="h-full bg-blue-500" style="width: ${res.sharesList[4].dilutionPercentage}%"></div>
+            </div>
+          </div>
+        `;
+      } 
+      else if (activeTool.id === "employee_contracts" || activeTool.id === "offer_letters") {
+        calcContainer.classList.remove("hidden");
+        const basic = Number(formData.monthlyBasic || 0);
+        const res = window.calculateCTCComponents(basic, 0.1);
+        
+        calcContainer.innerHTML = `
+          <h4 class="text-xs font-bold text-gold-500 mb-2 uppercase tracking-wide">Monthly Payroll Estimates</h4>
+          <div class="flex flex-col gap-1.5 text-xs">
+            <div class="flex justify-between"><span class="text-slate-400">HRA Benefit:</span><span class="text-white font-semibold">INR ${res.monthly.hra.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Special Allowance:</span><span class="text-white font-semibold">INR ${res.monthly.specialAllowance.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Employer PF Contribution:</span><span class="text-white font-semibold">INR ${res.monthly.pf.toLocaleString()}</span></div>
+            <div class="border-t border-navy-700/50 my-1 pt-1 flex justify-between font-bold">
+              <span class="text-gold-500">Projected Annual CTC:</span>
+              <span class="text-white">INR ${res.annual.ctcTotal.toLocaleString()}</span>
+            </div>
+          </div>
+        `;
+      }
+      else if (activeTool.id === "financial_model") {
+        calcContainer.classList.remove("hidden");
+        const rev = Number(formData.initialRev || 0);
+        const growth = Number(formData.growthRate || 0)/100;
+        const res = window.calculateFinancialModel(rev, growth, Number(formData.cogsRate || 0)/100, Number(formData.opexRate || 0)/100);
+        
+        calcContainer.innerHTML = `
+          <h4 class="text-xs font-bold text-gold-500 mb-2 uppercase tracking-wide">Year 5 Profitability Outlook</h4>
+          <div class="flex flex-col gap-1.5 text-xs">
+            <div class="flex justify-between"><span class="text-slate-400">Year 5 Revenue Forecast:</span><span class="text-white font-semibold">INR ${res[4].revenue.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Gross Margin:</span><span class="text-emerald-400 font-semibold">${res[4].grossMargin}%</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Year 5 EBITDA:</span><span class="text-white font-semibold">INR ${res[4].ebitda.toLocaleString()}</span></div>
+            <div class="flex justify-between font-bold"><span class="text-gold-500">Year 5 Net Profit:</span><span class="text-white">INR ${res[4].netProfit.toLocaleString()}</span></div>
+          </div>
+        `;
+      }
+      else {
+        calcContainer.classList.add("hidden");
+      }
+    }
+
+    // Read form inputs
+    function getFormData() {
+      const data = {};
+      if (!activeTool) return data;
+      
+      activeTool.fields.forEach(f => {
+        const input = document.getElementById(`input-${f.id}`);
+        if (input) {
+          data[f.id] = input.value;
+        }
+      });
+      return data;
+    }
+
+    // Update main text preview panel
+    function updatePreview() {
+      if (!activeTool) return;
+      const data = getFormData();
+      const markdown = activeTool.generator(data);
+      
+      const preview = document.getElementById("preview-panel");
+      preview.innerHTML = marked.parse(markdown);
+    }
+
+    // Markdown file exporter
+    function downloadMarkdown() {
+      if (!activeTool) return;
+      const data = getFormData();
+      const markdown = activeTool.generator(data);
+      
+      const blob = new Blob([markdown], { type: "text/markdown;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${activeTool.id}.md`;
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Physical print overlay dispatcher
+    function triggerPrint() {
+      if (!activeTool) return;
+      const data = getFormData();
+      const markdown = activeTool.generator(data);
+      const htmlContent = marked.parse(markdown);
+      
+      const printTarget = document.getElementById("print-target");
+      printTarget.innerHTML = `
+        <div style="font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.6; padding: 20px;">
+          ${htmlContent}
+        </div>
+      `;
+      
+      window.print();
+    }
+
+    // Slide presentation controllers (Pitch Deck Builder slide deck)
+    function startPitchDeckPresentation() {
+      const formData = getFormData();
+      slidesData.length = 0; // Clear
+      
+      slidesData.push(`
+        <h2 class="text-5xl font-extrabold text-gold-500 tracking-tight leading-normal uppercase">${formData.companyName}</h2>
+        <p class="text-lg text-slate-300 mt-4 font-light tracking-widest italic">Building Innovation. Delivering Impact.</p>
+        <div class="h-1.5 w-24 bg-gold-500/60 mx-auto mt-6 rounded-full"></div>
+      `);
+      
+      slidesData.push(`
+        <span class="text-xs uppercase font-extrabold tracking-widest text-gold-500 bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/30">Slide 2: The Problem</span>
+        <h3 class="text-3xl font-bold text-white mt-8 mb-6 max-w-2xl mx-auto leading-relaxed">${formData.problem}</h3>
+        <p class="text-slate-400 text-sm max-w-xl mx-auto">Manual operations introduce liabilities and security compliance failures for modern platforms.</p>
+      `);
+      
+      slidesData.push(`
+        <span class="text-xs uppercase font-extrabold tracking-widest text-gold-500 bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/30">Slide 3: Our Solution</span>
+        <h3 class="text-3xl font-bold text-white mt-8 mb-6 max-w-2xl mx-auto leading-relaxed">${formData.solution}</h3>
+        <p class="text-slate-400 text-sm max-w-xl mx-auto">High-fidelity corporate agreements, policy compliance templates, and spreadsheets compiled automatically.</p>
+      `);
+      
+      slidesData.push(`
+        <span class="text-xs uppercase font-extrabold tracking-widest text-gold-500 bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/30">Slide 4: The Investment Ask</span>
+        <h3 class="text-4xl font-extrabold text-white mt-8 mb-4">${formData.askAmount}</h3>
+        <p class="text-slate-300 text-base max-w-md mx-auto mb-8 font-light">Funding allocates 50% to backend engineering, 30% to marketing expansion, and 20% to operations.</p>
+        <div class="flex justify-center gap-6 text-xs font-semibold text-slate-400">
+          <div>📍 New Mexico, USA</div>
+          <div>•</div>
+          <div>🌐 rjbizsolution23@gmail.com</div>
+        </div>
+      `);
+      
+      activeSlideIndex = 0;
+      document.getElementById("deck-slide-logo").innerText = `${formData.companyName} Pitch Deck`;
+      document.getElementById("deck-total-slides").innerText = slidesData.length;
+      
+      updateSlideView();
+      document.getElementById("pitchdeck-modal").classList.remove("hidden");
+    }
+
+    function updateSlideView() {
+      const container = document.getElementById("deck-slide-container");
+      container.className = "max-w-4xl slide-enter";
+      
+      setTimeout(() => {
+        container.innerHTML = slidesData[activeSlideIndex];
+        container.className = "max-w-4xl slide-active";
+        
+        document.getElementById("deck-current-slide").innerText = activeSlideIndex + 1;
+        document.getElementById("deck-prev-btn").disabled = activeSlideIndex === 0;
+        
+        const nextBtn = document.getElementById("deck-next-btn");
+        if (activeSlideIndex === slidesData.length - 1) {
+          nextBtn.innerText = "Finish";
+          nextBtn.onclick = closePitchDeckPresentation;
+        } else {
+          nextBtn.innerText = "Next →";
+          nextBtn.onclick = nextSlide;
+        }
+      }, 50);
+    }
+
+    function nextSlide() {
+      if (activeSlideIndex < slidesData.length - 1) {
+        activeSlideIndex++;
+        updateSlideView();
+      }
+    }
+
+    function prevSlide() {
+      if (activeSlideIndex > 0) {
+        activeSlideIndex--;
+        updateSlideView();
+      }
+    }
+
+    function closePitchDeckPresentation() {
+      document.getElementById("pitchdeck-modal").classList.add("hidden");
+    }
+  </script>
+</body>
+</html>
