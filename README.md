@@ -2,7 +2,7 @@
 <img src="https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg" alt="RJ Business Solutions" width="320"/>
 
 # Supreme AI Swarm Orchestrator (SASO)
-### Built by **RJ Business Solutions** | Architected by **Rick Jefferson**
+### Built by **RJ Business Solutions** for **NeuronEdge Labs Inc.** | Architected by **Rick Jefferson**
 
 📍 1342 NM 333, Tijeras, New Mexico 87059 | 🌐 [rickjeffersonsolutions.com](https://rickjeffersonsolutions.com)
 
@@ -75,8 +75,8 @@ Once started, access the beautiful glassmorphic client portal at `http://127.0.0
 
 ## 💼 Corporate & Legal Identity
 
-This project is fully maintained and owned by **RJ Business Solutions**.
-- **Owner**: Rick Jefferson
-- **Address**: 1342 NM 333, Tijeras, New Mexico 87059
+This project is built on behalf of **NeuronEdge Labs Inc.** and is fully maintained by **RJ Business Solutions**.
+- **Owner / Principal**: Rick Jefferson
+- **Corporate Entity**: NeuronEdge Labs Inc. (Wyoming C-Corp)
 - **Email**: [rjbizsolution23@gmail.com](mailto:rjbizsolution23@gmail.com)
 - **Website**: [rickjeffersonsolutions.com](https://rickjeffersonsolutions.com)

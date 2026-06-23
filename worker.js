@@ -1,6 +1,6 @@
 // =============================================================================
 // Supreme AI Swarm Orchestrator (SASO) — Cloudflare Worker v2.0
-// Rick Jefferson | RJ Business Solutions
+// Built by RJ Business Solutions for NeuronEdge Labs Inc.
 // 📍 1342 NM 333, Tijeras, New Mexico 87059
 // 🌐 https://rickjeffersonsolutions.com
 // =============================================================================
@@ -282,8 +282,8 @@ export default {
         edge:    true,
         worker:  'saso-worker',
         version: '2.0.0',
-        company: 'RJ Business Solutions',
-        owner:   'Rick Jefferson',
+        company: 'NeuronEdge Labs Inc.',
+        owner:   'Rick Jefferson (RJ Business Solutions)',
         website: 'https://rickjeffersonsolutions.com',
       });
     }
@@ -334,7 +334,7 @@ async function runEdgeSwarm(clientSocket, userRequest, provider, modelKey, auton
   };
 
   log('Initializing SASO Edge Swarm Orchestrator v2.0...', 'info');
-  log('Built by RJ Business Solutions | Architected by Rick Jefferson', 'info');
+  log('Built by RJ Business Solutions for NeuronEdge Labs Inc. | Architected by Rick Jefferson', 'info');
 
   // Load agent manifests from KV (populated by saso_bridge.py on local machine)
   const agentsJson = await env.SASO_STORAGE.get('agents_cache');
@@ -350,7 +350,7 @@ async function runEdgeSwarm(clientSocket, userRequest, provider, modelKey, auton
   log('Decomposing task into logical steps...', 'plan');
 
   let plannerPrompt = (
-    'You are the Supreme AI Orchestrator, built by Rick Jefferson at RJ Business Solutions. ' +
+    'You are the Supreme AI Orchestrator, built by RJ Business Solutions for NeuronEdge Labs Inc. ' +
     'Analyze the user request and break it into a sequence of logical steps. ' +
     'For each step, assign the most suitable specialized agent.\n\n' +
     'AVAILABLE AGENTS:\n'
@@ -405,7 +405,7 @@ async function runEdgeSwarm(clientSocket, userRequest, provider, modelKey, auton
 
     const agentName = targetAgent?.name ?? 'Supreme AI Orchestrator';
     let systemPrompt = targetAgent?.system_prompt
-      ?? 'You are the Supreme AI Orchestrator built by RJ Business Solutions. Execute tasks with precision and deliver complete, production-ready results.';
+      ?? 'You are the Supreme AI Orchestrator built by RJ Business Solutions for NeuronEdge Labs Inc. Execute tasks with precision and deliver complete, production-ready results.';
 
     // Inject action syntax guide into every agent's system prompt
     systemPrompt += (
@@ -539,7 +539,7 @@ async function runEdgeSwarm(clientSocket, userRequest, provider, modelKey, auton
   }
 
   log('✅ Swarm task execution complete!', 'success');
-  log('RJ Business Solutions | rickjeffersonsolutions.com | Rick Jefferson', 'success');
+  log('Built by RJ Business Solutions for NeuronEdge Labs Inc. | rickjeffersonsolutions.com', 'success');
   try {
     clientSocket.send(JSON.stringify({ message: 'Swarm Orchestrator finished execution.', type: 'finished', agent: 'System' }));
   } catch {}
@@ -576,7 +576,7 @@ async function callLLMDirect(systemPrompt, userPrompt, provider, modelKey, env) 
     apiKey = await resolveKey('OPENROUTER_API_KEY', 'key:openrouter');
     extraHeaders = {
       'HTTP-Referer': 'https://rickjeffersonsolutions.com',
-      'X-Title':      'Supreme AI Swarm Orchestrator — RJ Business Solutions',
+      'X-Title':      'Supreme AI Swarm Orchestrator — NeuronEdge Labs Inc.',
     };
     const modelMap = {
       'fast':             'google/gemini-2.5-flash',
@@ -693,7 +693,7 @@ function getHTMLFallback() {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SASO — Supreme AI Swarm Orchestrator</title>
-  <meta name="description" content="Supreme AI Swarm Orchestrator — Built by RJ Business Solutions">
+  <meta name="description" content="Supreme AI Swarm Orchestrator — Built for NeuronEdge Labs Inc.">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -740,9 +740,9 @@ function getHTMLFallback() {
       <div class="dot"></div>
       <span style="color:#22C55E;font-size:13px;font-weight:600;">Cloudflare Edge Active</span>
     </div>
-    <p>Built by <strong style="color:#fff;">RJ Business Solutions</strong><br>
+    <p>Built by <strong style="color:#fff;">RJ Business Solutions</strong> for <strong style="color:#fff;">NeuronEdge Labs Inc.</strong><br>
        Architected by <strong style="color:#fff;">Rick Jefferson</strong></p>
-    <p class="sub">📍 1342 NM 333, Tijeras, New Mexico 87059 &nbsp;|&nbsp; rickjeffersonsolutions.com</p>
+    <p class="sub">📍 Laramie County, Wyoming, USA &nbsp;|&nbsp; rickjeffersonsolutions.com</p>
   </div>
 </body>
 </html>`;

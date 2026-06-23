@@ -1,6 +1,6 @@
 // =============================================================================
 // Cloudflare Worker Swarm Coordinator (worker.js)
-// Rick Jefferson | RJ Business Solutions
+// Built by RJ Business Solutions for NeuronEdge Labs Inc.
 // =============================================================================
 
 // Keep track of active bridge and client connections in memory (per instance)
@@ -549,7 +549,7 @@ function getHTMLPage() {
       <div class="card">
           <h1>Supreme AI Swarm Orchestrator</h1>
           <p>Cloudflare Edge Routing Service <span class="badge">SASO Edge Active</span></p>
-          <p>Rick Jefferson | RJ Business Solutions</p>
+          <p>Built by RJ Business Solutions for NeuronEdge Labs Inc.</p>
       </div>
   </body>
   </html>

@@ -23,8 +23,8 @@ new_classes = ["SASORoomDO"]
 
 # Company identity vars (non-secret)
 [vars]
-COMPANY_NAME    = "RJ Business Solutions"
-COMPANY_OWNER   = "Rick Jefferson"
+COMPANY_NAME    = "NeuronEdge Labs Inc."
+COMPANY_OWNER   = "Rick Jefferson (RJ Business Solutions)"
 COMPANY_WEBSITE = "https://rickjeffersonsolutions.com"
 COMPANY_EMAIL   = "rjbizsolution23@gmail.com"
-COMPANY_ADDRESS = "1342 NM 333, Tijeras, New Mexico 87059"
+COMPANY_ADDRESS = "Laramie County, Wyoming, USA"

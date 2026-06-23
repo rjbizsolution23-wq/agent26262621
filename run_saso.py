@@ -15,7 +15,7 @@ BANNER = """
 =============================================================================
              SUPREME AI SWARM ORCHESTRATOR (SASO)
 =============================================================================
-Built by RJ Business Solutions | Architected by Rick Jefferson
+Built by RJ Business Solutions for NeuronEdge Labs Inc. | Architected by Rick Jefferson
 📍 1342 NM 333, Tijeras, New Mexico 87059
 🌐 https://rickjeffersonsolutions.com
 =============================================================================

@@ -1,6 +1,6 @@
 # =============================================================================
 # Supreme AI Swarm Orchestrator (SASO) Local Bridge Daemon
-# Rick Jefferson | RJ Business Solutions
+# Built by RJ Business Solutions for NeuronEdge Labs Inc.
 # 📍 1342 NM 333, Tijeras, New Mexico 87059
 # 🌐 https://rickjeffersonsolutions.com
 # =============================================================================
@@ -29,7 +29,7 @@ BANNER = """
 =============================================================================
              SASO LOCAL EXECUTION BRIDGE DAEMON
 =============================================================================
-Built by RJ Business Solutions | Architected by Rick Jefferson
+Built by RJ Business Solutions for NeuronEdge Labs Inc. | Architected by Rick Jefferson
 📍 1342 NM 333, Tijeras, New Mexico 87059
 🌐 https://rickjeffersonsolutions.com
 =============================================================================
