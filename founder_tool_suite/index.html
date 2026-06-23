@@ -323,6 +323,7 @@
           { name: "Founder 1", sharesHeld: Number(formData.founder1Shares) },
           { name: "Founder 2", sharesHeld: Number(formData.founder2Shares) },
           { name: "Founder 3", sharesHeld: Number(formData.founder3Shares) },
+          { name: "Founder 4", sharesHeld: Number(formData.founder4Shares) },
           { name: "Angel Investor", sharesHeld: Number(formData.investorShares) },
           { name: "ESOP Pool", sharesHeld: Number(formData.esopPoolShares) }
         ];
@@ -342,8 +343,9 @@
               <div class="h-full bg-amber-400" style="width: ${res.sharesList[0].dilutionPercentage}%"></div>
               <div class="h-full bg-amber-500" style="width: ${res.sharesList[1].dilutionPercentage}%"></div>
               <div class="h-full bg-yellow-600" style="width: ${res.sharesList[2].dilutionPercentage}%"></div>
-              <div class="h-full bg-emerald-500" style="width: ${res.sharesList[3].dilutionPercentage}%"></div>
-              <div class="h-full bg-blue-500" style="width: ${res.sharesList[4].dilutionPercentage}%"></div>
+              <div class="h-full bg-orange-500" style="width: ${res.sharesList[3].dilutionPercentage}%"></div>
+              <div class="h-full bg-emerald-500" style="width: ${res.sharesList[4].dilutionPercentage}%"></div>
+              <div class="h-full bg-blue-500" style="width: ${res.sharesList[5].dilutionPercentage}%"></div>
             </div>
           </div>
         `;
