@@ -1,6 +1,6 @@
 /* 
 =============================================================================
-Startup Founder Tool Suite — Document Data & Generators
+Startup Founder Tool Suite — Document Data & Generators (NeuronEdge Labs Edition)
 Rick Jefferson | RJ Business Solutions
 📍 1342 NM 333, Tijeras, New Mexico 87059
 =============================================================================
@@ -10,65 +10,73 @@ const FOUNDER_TOOLS = [
   {
     id: "founder_agreement",
     name: "1. Founder Agreement",
-    description: "Establish ownership percentages, vesting, and decision-making rules between co-founders.",
+    description: "Establish ownership percentages, vesting, and decision-making rules between NeuronEdge Labs co-founders.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
       { id: "agreementDate", label: "Agreement Date", type: "date", default: "2026-06-23" },
-      { id: "founder1Name", label: "Founder 1 Name", type: "text", default: "Rick Jefferson" },
-      { id: "founder1Role", label: "Founder 1 Role", type: "text", default: "CEO" },
-      { id: "founder1Equity", label: "Founder 1 Equity (%)", type: "number", default: 40 },
-      { id: "founder2Name", label: "Founder 2 Name", type: "text", default: "Jane Doe" },
-      { id: "founder2Role", label: "Founder 2 Role", type: "text", default: "CTO" },
-      { id: "founder2Equity", label: "Founder 2 Equity (%)", type: "number", default: 40 },
-      { id: "founder3Name", label: "Founder 3 Name", type: "text", default: "John Smith" },
-      { id: "founder3Role", label: "Founder 3 Role", type: "text", default: "COO" },
+      { id: "founder1Name", label: "Founder 1 Name", type: "text", default: "Ricky Jefferson" },
+      { id: "founder1Role", label: "Founder 1 Role", type: "text", default: "CEO & President" },
+      { id: "founder1Equity", label: "Founder 1 Equity (%)", type: "number", default: 35 },
+      { id: "founder2Name", label: "Founder 2 Name", type: "text", default: "Dr. Jessica Edwards" },
+      { id: "founder2Role", label: "Founder 2 Role", type: "text", default: "CSO (Chief Scientific Officer)" },
+      { id: "founder2Equity", label: "Founder 2 Equity (%)", type: "number", default: 30 },
+      { id: "founder3Name", label: "Founder 3 Name", type: "text", default: "Dr. McKnight" },
+      { id: "founder3Role", label: "Founder 3 Role", type: "text", default: "Chief AI Architect" },
       { id: "founder3Equity", label: "Founder 3 Equity (%)", type: "number", default: 20 },
+      { id: "founder4Name", label: "Founder 4 Name", type: "text", default: "Kurmesha C." },
+      { id: "founder4Role", label: "Founder 4 Role", type: "text", default: "COO" },
+      { id: "founder4Equity", label: "Founder 4 Equity (%)", type: "number", default: 15 },
       { id: "vestingYears", label: "Vesting Period (Years)", type: "number", default: 4 },
       { id: "cliffYears", label: "Cliff Period (Years)", type: "number", default: 1 }
     ],
     generator: (data) => `
-# FOUNDER AGREEMENT
+# FOUNDER COLLABORATION & SHAREHOLDERS AGREEMENT
 
-This Founder Agreement (the "Agreement") is entered into as of **${data.agreementDate}** by and between the co-founders listed below, for the purpose of establishing ownership, responsibilities, and operating principles of **${data.companyName}** (the "Company").
+This Founder Agreement (the "Agreement") is entered into as of **${data.agreementDate}** by and between the co-founders listed below, for the purpose of establishing ownership, responsibilities, and operating principles of **${data.companyName}**, a Delaware/Wyoming C-Corporation (the "Company").
 
 ---
 
 ## 1. FOUNDER DETAILS & EQUITY OWNERSHIP
 
-The co-founders agree to the initial equity division set forth below, subject to the vesting terms outlined in Section 3 of this Agreement:
+The co-founders agree to the initial equity division set forth below, representing founders' common stock allocation subject to the vesting terms outlined in Section 3 of this Agreement:
 
-| Founder Name | Role | Equity Ownership |
-| :--- | :--- | :--- |
-| **${data.founder1Name}** | ${data.founder1Role} | ${data.founder1Equity}% |
-| **${data.founder2Name}** | ${data.founder2Role} | ${data.founder2Equity}% |
-| **${data.founder3Name}** | ${data.founder3Role} | ${data.founder3Equity}% |
-| **Total** | - | **100%** |
-
----
-
-## 2. ROLES, RESPONSIBILITIES & DECISION MAKING
-
-- **${data.founder1Name}** shall serve as **${data.founder1Role}** and oversee general business administration, financial strategies, operations, and compliance.
-- **${data.founder2Name}** shall serve as **${data.founder2Role}** and oversee product research, software engineering, architecture, and technology releases.
-- **${data.founder3Name}** shall serve as **${data.founder3Role}** and oversee business development, customer support operations, and marketing campaigns.
-
-### Decision Making
-Major business decisions (including altering capital structures, borrowing, selling assets, or hiring executives) require:
-- **Simple Majority (2 out of 3 votes)** of the co-founders.
+| Founder Name | Role | Equity Ownership | Initial Shares |
+| :--- | :--- | :--- | :--- |
+| **${data.founder1Name}** | ${data.founder1Role} | ${data.founder1Equity}% | 3,500,000 |
+| **${data.founder2Name}** | ${data.founder2Role} | ${data.founder2Equity}% | 3,000,000 |
+| **${data.founder3Name}** | ${data.founder3Role} | ${data.founder3Equity}% | 2,000,000 |
+| **${data.founder4Name}** | ${data.founder4Role} | ${data.founder4Equity}% | 1,500,000 |
+| **Total** | - | **100%** | **10,000,000** |
 
 ---
 
-## 3. VESTING SCHEDULE
+## 2. ROLES, REPRESENTATION & EXECUTIVE STRUCTURE
 
-All founder equity listed in Section 1 shall vest over a **${data.vestingYears}-year period** with a **${data.cliffYears}-year cliff**, computed monthly. 
+*   **${data.founder1Name}** shall serve as **${data.founder1Role}** and oversee general business administration, corporate fundraising, strategy, investor relations, and commercial operations.
+*   **${data.founder2Name}** shall serve as **${data.founder2Role}** and oversee clinical research, scientific validation, laboratory projects, and peer-review submissions.
+*   **${data.founder3Name}** shall serve as **${data.founder3Role}** and oversee deep learning research, agent swarm coordination engineering, and database systems.
+*   **${data.founder4Name}** shall serve as **${data.founder4Role}** and oversee operations, corporate compliance, marketing outreach, and scaling schedules.
+
+---
+
+## 3. VESTING & REVERSE REPURCHASE RIGHTS
+
+All shares issued to the founders under Section 1 shall vest over a **${data.vestingYears}-year vesting period** with a **${data.cliffYears}-year cliff**, computed monthly from the date of incorporation:
 - No shares shall vest until the completion of **${data.cliffYears} year(s)** of service.
+- If a founder terminates their relationship before the cliff, the Company shall exercise its right to repurchase 100% of their shares at par value ($0.0001 per share).
 - Following the cliff, shares shall vest in equal monthly installments over the remaining months.
 
 ---
 
-## 4. SIGNATURES
+## 4. BOARD OF DIRECTORS & VOTING
+*   The Board of Directors shall initially consist of 4 members: **${data.founder1Name}**, **${data.founder2Name}**, **${data.founder3Name}**, and **${data.founder4Name}**.
+*   Any material transaction, amendment of corporate charter, or executive hiring requires a majority board vote.
 
-By signing below, the founders agree to all covenants:
+---
+
+## 5. SIGNATURES
+
+By signing below, the representatives of **${data.companyName}** agree to all covenants:
 
 **Founder 1:** 
 ___________________________   Date: ______________
@@ -81,104 +89,108 @@ ___________________________   Date: ______________
 **Founder 3:** 
 ___________________________   Date: ______________
 **${data.founder3Name}**
+
+**Founder 4:** 
+___________________________   Date: ______________
+**${data.founder4Name}**
 `
   },
   {
     id: "incorporation_docs",
     name: "2. Incorporation Documents",
-    description: "Simulated Ministry of Corporate Affairs (MCA) Certificate of Incorporation (India).",
+    description: "Certificate of Incorporation for a Wyoming C-Corporation (NeuronEdge Labs Inc.).",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC INNOVATIONS PRIVATE LIMITED" },
-      { id: "incorporationDate", label: "Date of Incorporation", type: "date", default: "2026-06-23" },
-      { id: "cin", label: "Corporate Identity Number (CIN)", type: "text", default: "U72900KA2026PTC123456" },
-      { id: "srn", label: "System Reference Number (SRN)", type: "text", default: "T12345678" },
-      { id: "pan", label: "Company PAN", type: "text", default: "AABCA1234D" },
-      { id: "tan", label: "Company TAN", type: "text", default: "BLRA12345E" },
-      { id: "regOffice", label: "Registered Office Address", type: "text", default: "B-123, 2nd Floor, Okhla Industrial Area, Phase II, New Delhi - 110020, India" }
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "incorporationDate", label: "Date of Filing", type: "date", default: "2026-06-23" },
+      { id: "filingId", label: "Wyoming Filing ID", type: "text", default: "2026-001234567" },
+      { id: "ein", label: "Employer Identification Number (EIN)", type: "text", default: "12-3456789" },
+      { id: "authShares", label: "Authorized Shares", type: "number", default: 10000000 },
+      { id: "parValue", label: "Par Value per Share ($)", type: "text", default: "0.0001" },
+      { id: "regAgent", label: "Registered Agent Name", type: "text", default: "Wyoming Corporate Services Inc." },
+      { id: "regOffice", label: "Registered Office Address", type: "text", default: "1712 Pioneer Ave, Cheyenne, WY 82001" }
     ],
     generator: (data) => `
 =============================================================================
-                      GOVERNMENT OF INDIA
-                 MINISTRY OF CORPORATE AFFAIRS
-                  Central Registration Centre
+                      STATE OF WYOMING
+                     SECRETARY OF STATE
+                  Herschler Building East
+                    Cheyenne, WY 82002
 =============================================================================
 
                  CERTIFICATE OF INCORPORATION
-        [Pursuant to sub-section (2) of section 7 of the Companies Act, 2013]
+                 OF A DOMESTIC C-CORPORATION
 
-SRN: ${data.srn}                                   Date of Incorporation: ${data.incorporationDate}
+Filing ID: ${data.filingId}                                Filing Date: ${data.incorporationDate}
+IRS EIN: ${data.ein}
 
-I hereby certify that **${data.companyName}** is incorporated on this **${data.incorporationDate}** under the Companies Act, 2013 and that the company is limited by shares.
+The undersigned, acting as the incorporator under the Wyoming Business Corporations Act, hereby adopts the following Articles of Incorporation:
 
-The Corporate Identity Number (CIN) of the company is: **${data.cin}**
-The Permanent Account Number (PAN) of the company is: **${data.pan}**
-The Tax Deduction and Collection Account Number (TAN) of the company is: **${data.tan}**
+*   **ARTICLE I (NAME)**: The name of the corporation is **${data.companyName}**
+*   **ARTICLE II (REGISTERED OFFICE & AGENT)**: The name of the registered agent and address of the registered office is:
+    **${data.regAgent}**
+    *${data.regOffice}*
+*   **ARTICLE III (AUTHORIZED SHARES)**: The total number of shares of stock which the corporation is authorized to issue is **${Number(data.authShares).toLocaleString()} shares** of Common Stock, with a par value of **$${data.parValue}** per share.
+*   **ARTICLE IV (INCORPORATORS)**: The name and mailing address of the incorporator is:
+    **Ricky Jefferson**, *1342 NM 333, Tijeras, NM 87059*
 
-Given under my hand at Manesar this Twenty-Third day of June, Two Thousand Twenty-Six.
+I hereby declare under penalty of perjury that this instrument is the incorporator's act and deed.
 
-                                                Registrar of Companies
-                                             For and on behalf of the
-                                            Central Registration Centre
-
-Registered Office Address:
-${data.regOffice}
-
------------------------------------------------------------------------------
-*Note: This is a digitally signed certificate and does not require any physical signature.*
+                                                Wyoming Secretary of State
+                                              By: Corporate Filing Division
 =============================================================================
 `
   },
   {
     id: "exit_clause",
     name: "3. Co-founder Exit Clause",
-    description: "Define equity forfeitures, non-competes, and transfer rights if a co-founder leaves the company.",
+    description: "Define share repurchases, IP retention, and non-compete covenants under Wyoming legal code.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
       { id: "agreementDate", label: "Founder Agreement Date", type: "date", default: "2026-06-23" },
-      { id: "founderName", label: "Exiting Founder Name", type: "text", default: "John Smith" },
+      { id: "founderName", label: "Exiting Founder Name", type: "text", default: "Kurmesha C." },
       { id: "nonCompeteMonths", label: "Non-Compete Period (Months)", type: "number", default: 12 },
-      { id: "resolutionJurisdiction", label: "Arbitration Jurisdiction", type: "text", default: "New Delhi, India" }
+      { id: "resolutionJurisdiction", label: "Arbitration Jurisdiction", type: "text", default: "Laramie County, Wyoming, USA" }
     ],
     generator: (data) => `
-# CO-FOUNDER EXIT CLAUSE
-*(An Addendum to the Founder Agreement)*
+# CO-FOUNDER EXIT CLAUSE & BUYBACK AGREEMENT
+*(An Addendum to the NeuronEdge Labs Founder Agreement)*
 
 This Co-founder Exit Clause ("Clause") is part of the Founder Agreement dated **${data.agreementDate}** entered into by and between the co-founders of **${data.companyName}** ("Company").
 
 ---
 
-## 1. DEFINITIONS
-*   **"Exiting Founder"** means any co-founder who ceases to be actively involved in the Company for any reason (voluntary resignation, termination, death, or disability).
-*   **"Active Involvement"** means the founder is working on the business full-time and contributing to the Company's operations.
+## 1. EXIT CLASSIFICATIONS & EQUITY FORFEITURE
+Upon termination of services of **${data.founderName}** (the "Exiting Founder"):
+1.  **Repurchase of Unvested Shares**: The Company retains an options buyback right to repurchase all unvested shares from the Exiting Founder at a par value of $0.0001 per share.
+2.  **Right of First Refusal (ROFR)**: If the Exiting Founder wishes to sell their vested shares, the Company and remaining founders shall have first priority to acquire them at Fair Market Value (FMV) as determined by an independent valuation expert.
 
 ---
 
-## 2. EXIT EVENTS & EQUITY REALLOCATION
-Upon the exit of **${data.founderName}** from the Company:
-1.  **Forfeiture of Unvested Equity**: All unvested shares belonging to the Exiting Founder as of the exit date shall be forfeited and return to the Company's treasury pool.
-2.  **Right of First Refusal (ROFR)**: The remaining co-founders or the Company shall have the first right to purchase the vested shares of the Exiting Founder at fair market value before transferring to external parties.
+## 2. INTELLECTUAL PROPERTY COVENANTS
+*   **Irrevocable Assignment**: Any IP, software code, neural net models, or data assets developed by the Exiting Founder for **${data.companyName}** remains the sole and exclusive property of the Company. 
+*   **IP License**: The Exiting Founder forfeits any claims, patent filings, or copyrights associated with neural network swarms developed during their engagement.
 
 ---
 
-## 3. RESTRICTIVE COVENANTS
-1.  **Non-Compete**: The Exiting Founder shall not, directly or indirectly, engage in or support any business competing with the Company for a period of **${data.nonCompeteMonths} months** from the exit date.
-2.  **Non-Solicitation**: The Exiting Founder shall not solicit employees, clients, or investors of the Company for a period of **${data.nonCompeteMonths} months**.
+## 3. NON-COMPETE & NON-SOLICITATION
+1.  **Non-Compete**: The Exiting Founder shall not operate or advise any competing neural network or AI agent platforms in the United States for a period of **${data.nonCompeteMonths} months** post-exit.
+2.  **Non-Solicitation**: The Exiting Founder shall not hire or contract current employees or key advisors of the Company for a period of **${data.nonCompeteMonths} months**.
 
 ---
 
-## 4. GOVERNING LAW & RESOLUTION
-Any dispute arising under this Clause shall be resolved through arbitration in **${data.resolutionJurisdiction}** in accordance with local arbitration laws.
+## 4. GOVERNING LAW & JURISDICTION
+This Agreement shall be governed by the laws of the **State of Wyoming**. Any legal disputes shall be settled in state or federal courts located in **${data.resolutionJurisdiction}**.
 `
   },
   {
     id: "shareholders_agreement",
     name: "4. Shareholders Agreement",
-    description: "Define shareholder rights, transfer restrictions, board representation, and reserved matters.",
+    description: "Define shareholder rights, information rights, pre-emptive rights, and reserved matters.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
       { id: "agreementDate", label: "Agreement Date", type: "date", default: "2026-06-23" },
-      { id: "boardMembersCount", label: "Number of Board Directors", type: "number", default: 3 },
-      { id: "reservedMattersConsent", label: "Reserved Matters Consent (%)", type: "number", default: 75 }
+      { id: "boardDirectors", label: "Nominated Board Directors", type: "text", default: "Ricky Jefferson, Dr. Jessica Edwards, Dr. McKnight, Kurmesha C." },
+      { id: "consentPct", label: "Affirmative Consent for Reserved Matters (%)", type: "number", default: 75 }
     ],
     generator: (data) => `
 # SHAREHOLDERS' AGREEMENT
@@ -187,47 +199,49 @@ This Shareholders' Agreement (the "Agreement") is made and entered into on **${d
 
 ---
 
-## 1. BOARD REPRESENTATION & GOVERNANCE
-*   The Board of Directors of the Company shall consist of **${data.boardMembersCount} directors**.
-*   Each major shareholder holding more than 15% of the outstanding equity shares shall have the right to nominate one (1) director to the Board.
+## 1. CORPORATE GOVERNANCE & BOARD NOMINATIONS
+*   The Board of Directors shall initially comprise the following representatives: **${data.boardDirectors}**.
+*   Major shareholders holding at least 15% of the Common Stock shall retain the right to appoint one board member.
 
 ---
 
-## 2. SHARE TRANSFER RESTRICTIONS
-*   **Right of First Refusal (ROFR)**: No shareholder shall transfer any shares to any third party without first offering the same shares to the remaining shareholders.
-*   **Tag-Along Right**: If a majority shareholder sells their shares, minority shareholders have the right to join the transaction and sell their shares proportionally.
-*   **Drag-Along Right**: If shareholders holding more than 75% of the shares approve a sale, they can force the remaining minority shareholders to sell their shares on identical terms.
+## 2. SHARE TRANSFER RESTRICTIONS & PROTECTIONS
+*   **Right of First Refusal (ROFR)**: No shareholder may sell or transfer shares to a third party without first offering the shares to the Company and other shareholders.
+*   **Pre-emptive Rights**: Shareholders have the right to purchase pro-rata shares in any future funding rounds to prevent involuntary dilution.
+*   **Co-Sale / Tag-Along Rights**: If major shareholders propose a sale of their stock, minor shareholders retain the right to join the sale under identical pricing terms.
 
 ---
 
 ## 3. RESERVED MATTERS
-The following matters require the affirmative vote of shareholders holding at least **${data.reservedMattersConsent}%** of the paid-up share capital:
-1.  Amendment of Articles or Memorandum of Association.
-2.  Any alteration of the capital structure (issuing new shares, buybacks).
-3.  Merger, amalgamation, or liquidation of the Company.
-4.  Entering into any contract exceeding INR 10,00,000.
+The Company shall not perform the following actions without the affirmative consent of at least **${data.consentPct}%** of the outstanding shares:
+1.  Amendment of Articles of Incorporation or Bylaws.
+2.  Creation of any new class of shares or issuance of stock options beyond the ESOP pool.
+3.  Merger, acquisition, or sale of substantial intellectual property.
+4.  Liquidating or dissolving the Corporation.
 `
   },
   {
     id: "cap_table",
     name: "5. Cap Table Calculator",
-    description: "Interactive Cap Table tracking share classes, holdings, and dilution values.",
+    description: "Calculate equity holdings, dilution percentages, and unallocated ESOP pools in USD ($).",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
-      { id: "authCapital", label: "Authorized Share Capital (INR)", type: "number", default: 10000000 },
-      { id: "founder1Shares", label: "Founder 1 Shares", type: "number", default: 1600000 },
-      { id: "founder2Shares", label: "Founder 2 Shares", type: "number", default: 1200000 },
-      { id: "founder3Shares", label: "Founder 3 Shares", type: "number", default: 800000 },
-      { id: "investorShares", label: "Angel Investor Shares", type: "number", default: 200000 },
-      { id: "esopPoolShares", label: "ESOP Pool Shares", type: "number", default: 200000 }
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "authCapital", label: "Authorized Common Shares", type: "number", default: 10000000 },
+      { id: "founder1Shares", label: "Ricky Jefferson (CEO) Shares", type: "number", default: 3500000 },
+      { id: "founder2Shares", label: "Dr. Jessica Edwards (CSO) Shares", type: "number", default: 3000000 },
+      { id: "founder3Shares", label: "Dr. McKnight (CSO) Shares", type: "number", default: 2000000 },
+      { id: "founder4Shares", label: "Kurmesha C. (COO) Shares", type: "number", default: 1500000 },
+      { id: "investorShares", label: "Venture Capital Investor Shares", type: "number", default: 2000000 },
+      { id: "esopPoolShares", label: "ESOP Option Pool", type: "number", default: 1000000 }
     ],
     generator: (data) => {
       const list = [
-        { name: "Founder 1", sharesHeld: Number(data.founder1Shares) },
-        { name: "Founder 2", sharesHeld: Number(data.founder2Shares) },
-        { name: "Founder 3", sharesHeld: Number(data.founder3Shares) },
-        { name: "Angel Investor", sharesHeld: Number(data.investorShares) },
-        { name: "ESOP Pool", sharesHeld: Number(data.esopPoolShares) }
+        { name: "Ricky Jefferson (CEO)", sharesHeld: Number(data.founder1Shares) },
+        { name: "Dr. Jessica Edwards (CSO)", sharesHeld: Number(data.founder2Shares) },
+        { name: "Dr. McKnight (Chief AI Architect)", sharesHeld: Number(data.founder3Shares) },
+        { name: "Kurmesha C. (COO)", sharesHeld: Number(data.founder4Shares) },
+        { name: "Investor (RJ Ventures)", sharesHeld: Number(data.investorShares) },
+        { name: "ESOP Option Pool", sharesHeld: Number(data.esopPoolShares) }
       ];
       const res = window.calculateCapTable(Number(data.authCapital), list);
       
@@ -239,21 +253,22 @@ The following matters require the affirmative vote of shareholders holding at le
       return `
 # CAPITALIZATION TABLE (CAP TABLE)
 **Company**: ${data.companyName}
+**Reporting Currency**: USD ($)
 **Date Generated**: 2026-06-23
 
 ---
 
-## 1. CAPITAL STRUCTURE SUMMARY
+## 1. SHARE STRUCTURE SUMMARY
 
-*   **Authorized Share Capital**: INR ${res.authorizedShares.toLocaleString()}
+*   **Authorized Shares**: ${res.authorizedShares.toLocaleString()}
 *   **Total Issued & Subscribed Shares**: ${res.totalSharesIssued.toLocaleString()}
-*   **Remaining Unissued Shares**: ${res.remainingUnissued.toLocaleString()}
+*   **Remaining Unissued Treasury Shares**: ${res.remainingUnissued.toLocaleString()}
 
 ---
 
-## 2. SHAREHOLDING DETAIL
+## 2. DETAILED SHAREHOLDING SPREAD
 
-| Shareholder Name | Shares Held | Dilution (%) |
+| Shareholder Name / Pool | Common Shares Held | Dilution % |
 | :--- | :--- | :--- |
 ${rows}
 | **Total** | **${res.totalSharesIssued.toLocaleString()}** | **100.00%** |
@@ -263,14 +278,14 @@ ${rows}
   {
     id: "esop_agreement",
     name: "6. ESOP Agreement",
-    description: "Employee Stock Option Plan agreement defining grants, exercise prices, and schedules.",
+    description: "Employee stock option plan grant agreement in USD ($) under US tax guidelines.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
       { id: "employeeName", label: "Employee Name", type: "text", default: "Alice Adams" },
-      { id: "designation", label: "Designation", type: "text", default: "Lead Software Architect" },
+      { id: "designation", label: "Designation", type: "text", default: "Lead AI Swarm Engineer" },
       { id: "grantDate", label: "Date of Grant", type: "date", default: "2026-06-23" },
-      { id: "optionsCount", label: "Number of Options Granted", type: "number", default: 50000 },
-      { id: "exercisePrice", label: "Exercise Price per Share (INR)", type: "number", default: 10 },
+      { id: "optionsCount", label: "Number of Options Granted", type: "number", default: 100000 },
+      { id: "exercisePrice", label: "Exercise Price per Share ($)", type: "text", default: "0.05" },
       { id: "vestingYears", label: "Vesting Period (Years)", type: "number", default: 4 },
       { id: "cliffYears", label: "Cliff Period (Years)", type: "number", default: 1 }
     ],
@@ -287,36 +302,36 @@ This ESOP Agreement (the "Agreement") is made effective as of the Date of Grant 
 *   **Designation**: ${data.designation}
 *   **Date of Grant**: ${data.grantDate}
 *   **Number of Options Granted**: ${Number(data.optionsCount).toLocaleString()} Options
-*   **Exercise Price per Share**: INR ${data.exercisePrice}/-
+*   **Exercise Price per Share**: $${data.exercisePrice} USD
+*   **Tax Status**: Intended to qualify as an Incentive Stock Option (ISO) under Section 422 of the Internal Revenue Code.
 
 ---
 
-## 2. VESTING & CLINICAL CLIFF
-*   The Options shall vest over a **${data.vestingYears}-year vesting schedule** subject to continuous service.
-*   **Cliff Period**: A **${data.cliffYears}-year cliff** applies, meaning 25% of the total options shall vest exactly 12 months after the grant date, and the remaining 75% shall vest in equal monthly installments over the following 36 months.
-*   Unvested Options shall immediately lapse on the date of resignation or termination of engagement.
+## 2. VESTING & CLIFF
+*   The options shall vest over a **${data.vestingYears}-year vesting schedule** subject to continuous employment.
+*   **Cliff Period**: A **${data.cliffYears}-year cliff** applies. 25% of the total options shall vest exactly 12 months after the grant date, and the remaining 75% shall vest in equal monthly installments over the following 36 months.
 
 ---
 
 ## 3. EXERCISE OF OPTIONS
-*   Vested options may be exercised by the Employee after a liquidity event (IPO, acquisition) or during specified exercise windows by paying the Exercise Price of INR ${data.exercisePrice}/- per share to the Company.
+*   Upon vesting, options may be exercised to purchase common stock of the Company by paying the Exercise Price of $${data.exercisePrice} per share.
 `
   },
   {
     id: "nda",
     name: "7. NDA (Non-Disclosure Agreement)",
-    description: "Standard mutual Non-Disclosure Agreement for sharing confidential IP.",
+    description: "Standard bilateral Non-Disclosure Agreement for confidential US discussions.",
     fields: [
-      { id: "disclosingParty", label: "Disclosing Party", type: "text", default: "ABC Innovations Private Limited" },
-      { id: "receivingParty", label: "Receiving Party", type: "text", default: "Vendor Tech LLC" },
-      { id: "purpose", label: "Purpose of Disclosure", type: "text", default: "Exploring a strategic backend API database integration partnership" },
+      { id: "disclosingParty", label: "Disclosing Party", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "receivingParty", label: "Receiving Party", type: "text", default: "Venture Fund LP" },
+      { id: "purpose", label: "Purpose of Disclosure", type: "text", default: "Reviewing a prospective Series Seed investment in NeuronEdge Labs Inc." },
       { id: "termYears", label: "NDA Term (Years)", type: "number", default: 3 },
-      { id: "governingLaw", label: "Governing Law Jurisdiction", type: "text", default: "New Delhi, India" }
+      { id: "governingLaw", label: "Governing Law Jurisdiction", type: "text", default: "State of Wyoming, USA" }
     ],
     generator: (data) => `
-# NON-DISCLOSURE AGREEMENT (NDA)
+# MUTUAL NON-DISCLOSURE AGREEMENT (NDA)
 
-This Non-Disclosure Agreement (the "Agreement") is made and entered into on **2026-06-23** by and between:
+This Non-Disclosure Agreement (the "Agreement") is entered into as of **2026-06-23** by and between:
 *   **DISCLOSING PARTY**: ${data.disclosingParty}
 *   **RECEIVING PARTY**: ${data.receivingParty}
 
@@ -328,7 +343,7 @@ The Disclosing Party desires to disclose certain confidential technical and comm
 ---
 
 ## 2. CONFIDENTIAL INFORMATION
-"Confidential Information" means any proprietary information disclosed by the Disclosing Party, including but not limited to business plans, software architecture codes, product design blueprints, database mockups, and customer metrics.
+"Confidential Information" means any proprietary information disclosed by the Disclosing Party, including but not limited to business plans, software codes, agent swarm model blueprints, database mockups, financial projections, and customer metrics.
 
 ---
 
@@ -342,93 +357,92 @@ The Receiving Party agrees to:
 
 ## 4. TERM & GOVERNING JURISDICTION
 *   This Agreement shall remain in effect for a period of **${data.termYears} years** from the date of execution.
-*   This Agreement shall be governed by and construed in accordance with the laws of **${data.governingLaw}**.
+*   This Agreement shall be governed by and construed in accordance with the laws of the **${data.governingLaw}**.
 `
   },
   {
     id: "ip_assignment",
     name: "8. IP Assignment Agreement",
-    description: "Assign all software codes, designs, and innovations from creators directly to the company.",
+    description: "Assign all software, neural models, and agent architectures from representatives to the company.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
-      { id: "assignorName", label: "Assignor/Founder Name", type: "text", default: "Rick Jefferson" },
-      { id: "ipDescription", label: "Description of Assigned IP", type: "text", default: "All source code, database architectures, and UI designs relating to the Supreme AI Swarm Orchestrator" },
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "assignorName", label: "Representative / Assignor Name", type: "text", default: "Ricky Jefferson, Dr. Jessica Edwards, Dr. McKnight, Kurmesha C." },
+      { id: "ipDescription", label: "Description of Assigned IP", type: "text", default: "All algorithms, source code, agent swarm coordination architectures, and model designs relating to the NeuronEdge AI agent platform" },
       { id: "executionDate", label: "Execution Date", type: "date", default: "2026-06-23" }
     ],
     generator: (data) => `
-# INTELLECTUAL PROPERTY ASSIGNMENT AGREEMENT
+# INTELLECTUAL PROPERTY ASSIGNMENT & TRANSFER AGREEMENT
 
-This IP Assignment Agreement (the "Agreement") is entered into on **${data.executionDate}** by and between **${data.assignorName}** (the "Assignor") and **${data.companyName}** (the "Company").
+This IP Assignment Agreement (the "Agreement") is entered into on **${data.executionDate}** by and between the co-founders **${data.assignorName}** (collectively, the "Assignors") and **${data.companyName}** (the "Company").
 
 ---
 
 ## 1. ASSIGNMENT OF INTELLECTUAL PROPERTY
-The Assignor hereby irrevocably and perpetually assigns, transfers, and conveys to the Company all right, title, and interest in and to the following Intellectual Property:
+The Assignors hereby irrevocably and perpetually assign, transfer, and convey to the Company all right, title, and interest in and to the following Intellectual Property:
 > **${data.ipDescription}**
 
 This assignment includes all worldwide copyright, patents, database rights, trade secrets, and designs.
 
 ---
 
-## 2. CONSIDERATION
-The Company has paid fair and adequate consideration to the Assignor for this assignment, the receipt of which is hereby acknowledged.
+## 2. REPRESENTATIONS & WARRANTIES
+The Assignors warrant that they are the sole creators of the assigned IP, that the IP is free of any encumbrances, and that they have full legal authority to transfer the assets to the Company.
 
 ---
 
 ## 3. WORK MADE FOR HIRE
-The Assignor acknowledges that all IP created by the Assignor during their engagement with the Company shall be deemed "work made for hire" for the Company to the fullest extent permitted by applicable law.
+The Assignors agree that all IP created by them during their engagement with the Company shall be deemed "work made for hire" for the Company to the fullest extent permitted by applicable US law.
 `
   },
   {
     id: "trademark_docs",
     name: "9. Trademark/IP Documents",
-    description: "Certificate of Registration of Trade Mark (India official mock layout).",
+    description: "US Patent and Trademark Office (USPTO) Registration mock layout.",
     fields: [
-      { id: "trademarkNo", label: "Trade Mark No.", type: "text", default: "5678901" },
-      { id: "applicationNo", label: "Application No.", type: "text", default: "3456789" },
-      { id: "proprietorName", label: "Proprietor Name", type: "text", default: "ABC INNOVATIONS PRIVATE LIMITED" },
-      { id: "brandName", label: "Brand/Trademark Name", type: "text", default: "ABC INNOVATIONS" },
-      { id: "classNo", label: "Class of Goods/Services", type: "number", default: 42 },
+      { id: "trademarkNo", label: "Registration No.", type: "text", default: "8,927,134" },
+      { id: "applicationNo", label: "Application No.", type: "text", default: "90/123,456" },
+      { id: "proprietorName", label: "Proprietor Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "brandName", label: "Brand/Trademark Name", type: "text", default: "NEURONEDGE LABS" },
+      { id: "classNo", label: "USPTO Class of Goods/Services", type: "number", default: 42 },
       { id: "registrationDate", label: "Date of Registration", type: "date", default: "2026-06-23" }
     ],
     generator: (data) => `
 =============================================================================
-                      GOVERNMENT OF INDIA
-                  TRADE MARKS REGISTRY, MUMBAI
+                UNITED STATES PATENT AND TRADEMARK OFFICE
 =============================================================================
 
-            CERTIFICATE OF REGISTRATION OF TRADE MARK
-            [Trade Marks Act, 1999 and Trade Marks Rules, 2017]
+                     CERTIFICATE OF REGISTRATION
+                      OF PRINCIPAL REGISTER
 
-Trade Mark No: ${data.trademarkNo}                              Date of Registration: ${data.registrationDate}
+Registration No: ${data.trademarkNo}                              Date of Registration: ${data.registrationDate}
 Application No: ${data.applicationNo}
 
-This is to certify that the Trade Mark shown below has been registered in Class **${data.classNo}** in the name of:
+This is to certify that the Trademark shown below has been registered in the Principal Register in Class **${data.classNo}** in the name of:
 **${data.proprietorName}**
-*${data.proprietorName}, B-123, 2nd Floor, New Delhi - 110020, India*
+*${data.proprietorName}, Cheyenne, WY 82001, USA*
 
-### Representation of Trademark:
+### Trademark:
 ## **${data.brandName}**
 
-### STATEMENT OF USE:
-*It is a condition of registration that the Trade Mark shall be used in relation to the goods/services for which it is registered, as per Section 47 of the Trade Marks Act, 1999.*
+### Class of Services:
+**Class 42**: Software as a service (SaaS) featuring distributed neural network agent swarm coordination algorithms, cloud-based data analytic APIs, and machine learning models.
 
-Sealed at my direction, this Twenty-Third day of June, Two Thousand Twenty-Six.
+Given under my hand at Alexandria, Virginia this Twenty-Third day of June, Two Thousand Twenty-Six.
 
-                                                Registrar of Trade Marks
-                                                  Government of India
+                                               Director of the United States
+                                            Patent and Trademark Office
 =============================================================================
 `
   },
   {
     id: "employee_contracts",
     name: "10. Employee Contracts",
-    description: "Comprehensive employment agreement with Indian salary structure and PF allocations.",
+    description: "US employment contract with base salary, FICA, health insurance, and 401(k) match in USD ($).",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
       { id: "employeeName", label: "Employee Name", type: "text", default: "Alice Adams" },
-      { id: "designation", label: "Designation", type: "text", default: "Senior Software Engineer" },
-      { id: "monthlyBasic", label: "Monthly Basic Salary (INR)", type: "number", default: 50000 },
+      { id: "designation", label: "Designation", type: "text", default: "Lead AI Architect" },
+      { id: "monthlyBasic", label: "Monthly Base Salary ($)", type: "number", default: 12000 },
       { id: "bonusRate", label: "Performance Bonus Rate (%)", type: "number", default: 10 }
     ],
     generator: (data) => {
@@ -436,46 +450,46 @@ Sealed at my direction, this Twenty-Third day of June, Two Thousand Twenty-Six.
       return `
 # EMPLOYMENT AGREEMENT
 
-This Employment Agreement is entered into on **2026-06-23** by and between **${data.companyName}** and **${data.employeeName}** ("Employee").
+This Employment Agreement is entered into as of **2026-06-23** by and between **${data.companyName}** and **${data.employeeName}** ("Employee").
 
 ---
 
-## 1. APPOINTMENT & TERM
+## 1. APPOINTMENT & DESIGNATION
 *   **Designation**: ${data.designation}
-*   The Employee shall report to the CTO or such other supervisor designated by the Company.
+*   The Employee shall report directly to the CEO, Ricky Jefferson, or such other supervisor designated by the Board.
 
 ---
 
-## 2. COMPENSATION & BENEFITS (CTC Breakdown)
+## 2. US COMPENSATION & BENEFITS (CTC Breakdown)
 
-The Employee's compensation package details are set forth below:
+The Employee's compensation package details are set forth below in USD ($):
 
-| Component | Monthly Amount (INR) | Annual Amount (INR) |
+| Component | Monthly Amount ($) | Annual Amount ($) |
 | :--- | :--- | :--- |
-| **Basic Salary** | ${res.monthly.basic.toLocaleString()} | ${res.annual.basic.toLocaleString()} |
-| **House Rent Allowance (HRA)** | ${res.monthly.hra.toLocaleString()} | ${res.annual.hra.toLocaleString()} |
-| **Special Allowance** | ${res.monthly.specialAllowance.toLocaleString()} | ${res.annual.specialAllowance.toLocaleString()} |
-| **Provident Fund (Employer)** | ${res.monthly.pf.toLocaleString()} | ${res.annual.pf.toLocaleString()} |
-| **Gratuity Allocation** | ${res.monthly.gratuity.toLocaleString()} | ${res.annual.gratuity.toLocaleString()} |
-| **Performance Bonus (Variable)** | - | ${res.annual.performanceBonus.toLocaleString()} |
-| **Total CTC (Cost to Company)** | - | **${res.annual.ctcTotal.toLocaleString()}** |
+| **Base Salary** | $${res.monthly.basic.toLocaleString()} | $${res.annual.basic.toLocaleString()} |
+| **Employer FICA Tax** | $${res.monthly.fica.toLocaleString()} | $${res.annual.fica.toLocaleString()} |
+| **Employer Health Insurance Contribution** | $${res.monthly.health.toLocaleString()} | $${res.annual.health.toLocaleString()} |
+| **401(k) Employer Matching (4%)** | $${res.monthly.match401k.toLocaleString()} | $${res.annual.match401k.toLocaleString()} |
+| **Overhead & Workers Comp Estimate** | $${res.monthly.overhead.toLocaleString()} | $${res.annual.overhead.toLocaleString()} |
+| **Performance Bonus (Variable)** | - | $${res.annual.performanceBonus.toLocaleString()} |
+| **Total CTC (Cost to Company)** | - | **$${res.annual.ctcTotal.toLocaleString()}** |
 
 ---
 
 ## 3. CONFIDENTIALITY & PROPRIETARY RIGHTS
-The Employee shall maintain strict confidentiality regarding all proprietary source code, algorithms, and designs of the Company and assigns all IP rights created during service to the Company.
+The Employee shall maintain strict confidentiality regarding all proprietary neural algorithms and agent codes and assigns all IP rights created during service to the Company.
 `;
     }
   },
   {
     id: "offer_letters",
     name: "11. Offer Letters",
-    description: "Standard corporate recruitment offer letter with compensation tables.",
+    description: "Standard US corporate recruitment offer letter with USD compensation tables.",
     fields: [
       { id: "candidateName", label: "Candidate Name", type: "text", default: "Alice Adams" },
-      { id: "jobTitle", label: "Job Title", type: "text", default: "Lead Software Architect" },
+      { id: "jobTitle", label: "Job Title", type: "text", default: "Lead AI Architect" },
       { id: "joiningDate", label: "Joining Date", type: "date", default: "2026-07-01" },
-      { id: "monthlyBasic", label: "Monthly Basic Salary (INR)", type: "number", default: 60000 }
+      { id: "monthlyBasic", label: "Monthly Base Salary ($)", type: "number", default: 12000 }
     ],
     generator: (data) => {
       const res = window.calculateCTCComponents(Number(data.monthlyBasic), 0.1);
@@ -486,35 +500,35 @@ Date: 2026-06-23
 
 Dear **${data.candidateName}**,
 
-We are pleased to offer you the position of **${data.jobTitle}** with **ABC Innovations Private Limited**. We were highly impressed by your technical interview rounds.
+We are pleased to offer you the position of **${data.jobTitle}** with **NeuronEdge Labs Inc.**
 
-### Key Offer Parameters:
+### Key Offer Parameters (USD):
 *   **Designation**: ${data.jobTitle}
 *   **Date of Joining**: ${data.joiningDate}
-*   **Monthly Basic Salary**: INR ${res.monthly.basic.toLocaleString()}/-
-*   **Total Annual CTC**: INR ${res.annual.ctcTotal.toLocaleString()}/-
+*   **Monthly Base Salary**: $${res.monthly.basic.toLocaleString()}/month
+*   **Total Annual CTC**: $${res.annual.ctcTotal.toLocaleString()}/year
 
 ### Salary Structure:
-*   Basic Salary: INR ${res.monthly.basic.toLocaleString()}/month
-*   House Rent Allowance (HRA): INR ${res.monthly.hra.toLocaleString()}/month
-*   Employer PF contribution: INR ${res.monthly.pf.toLocaleString()}/month
+*   Base Salary: $${res.monthly.basic.toLocaleString()}/month
+*   Employer Health contribution: $550/month
+*   Employer 401(k) Match (4%): $${res.monthly.match401k.toLocaleString()}/month
 
 Please sign and return a copy of this offer letter within 3 days as acceptance.
 
 Sincerely,
-**Rick Jefferson**
-Founder & CEO, ABC Innovations
+**Ricky Jefferson**
+CEO & President, NeuronEdge Labs Inc.
 `;
     }
   },
   {
     id: "hr_policies",
     name: "12. HR Policies",
-    description: "Employee Handbooks customizer outlining codes of conduct, privacy, and leaves.",
+    description: "US-compliant Employee Handbooks outlining codes of conduct, leaves, and 401(k) policies.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
-      { id: "leaveDays", label: "Annual Paid Leaves (Days)", type: "number", default: 24 },
-      { id: "probationMonths", label: "Probation Period (Months)", type: "number", default: 6 }
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "leaveDays", label: "Paid Time Off (PTO) (Days)", type: "number", default: 20 },
+      { id: "probationMonths", label: "Probation Period (Months)", type: "number", default: 3 }
     ],
     generator: (data) => `
 # COMPANY HUMAN RESOURCE (HR) POLICIES
@@ -523,7 +537,7 @@ Welcome to **${data.companyName}**. These policies define our high-performance w
 
 ---
 
-## 1. EQUAL OPPORTUNITY
+## 1. EQUAL OPPORTUNITY EMPLOYMENT (EEOC)
 We do not discriminate on the basis of race, color, religion, gender, sexual orientation, age, or disability.
 
 ---
@@ -534,7 +548,7 @@ We do not discriminate on the basis of race, color, religion, gender, sexual ori
 
 ---
 
-## 3. LEAVE POLICY
+## 3. PTO POLICY
 *   Employees are eligible for **${data.leaveDays} days of annual paid leaves**, credited monthly.
 *   Prior approval from the manager is required for any leave exceeding 2 consecutive days.
 
@@ -547,11 +561,11 @@ All computers, emails, and networks are company property. No proprietary source 
   {
     id: "terms_of_service",
     name: "13. Terms of Service",
-    description: "Generate standard Terms of Service (TOS) for a SaaS product or website.",
+    description: "Generate standard US Terms of Service (TOS) for NeuronEdge Labs SaaS products.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
-      { id: "websiteUrl", label: "Website URL", type: "text", default: "https://abcinnovations.com" },
-      { id: "governingJurisdiction", label: "Governing Jurisdiction", type: "text", default: "New Delhi, India" }
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "websiteUrl", label: "Website URL", type: "text", default: "https://neuronedge.io" },
+      { id: "governingJurisdiction", label: "Governing Jurisdiction", type: "text", default: "State of Wyoming, USA" }
     ],
     generator: (data) => `
 # TERMS OF SERVICE
@@ -577,17 +591,17 @@ All materials, designs, database interfaces, software codes, and trademarks disp
 ---
 
 ## 4. GOVERNING LAW
-These Terms shall be governed by and construed in accordance with the laws of **${data.governingJurisdiction}**.
+These Terms shall be governed by and construed in accordance with the laws of the **${data.governingJurisdiction}**.
 `
   },
   {
     id: "privacy_policy",
     name: "14. Privacy Policy",
-    description: "Generate standard GDPR/DPDP compliant Privacy Policy for SaaS platforms.",
+    description: "GDPR/CCPA/Wyoming-compliant Privacy Policy for SaaS platforms.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
-      { id: "websiteUrl", label: "Website URL", type: "text", default: "https://abcinnovations.com" },
-      { id: "contactEmail", label: "Contact Email", type: "text", default: "privacy@abcinnovations.com" }
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "websiteUrl", label: "Website URL", type: "text", default: "https://neuronedge.io" },
+      { id: "contactEmail", label: "Contact Email", type: "text", default: "privacy@neuronedge.io" }
     ],
     generator: (data) => `
 # PRIVACY POLICY
@@ -618,26 +632,26 @@ If you have any questions or require modifications to your data records, contact
   {
     id: "compliance_docs",
     name: "15. Legal Compliance Docs",
-    description: "Checklist tracker of essential corporate filings and registrations.",
+    description: "US C-Corporation compliance requirements and filing checklist tracker.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
-      { id: "gstStatus", label: "GST Registration Status", type: "text", default: "Completed" },
-      { id: "panStatus", label: "Company PAN Card Status", type: "text", default: "Completed" },
-      { id: "tanStatus", label: "Company TAN Allocation Status", type: "text", default: "Completed" },
-      { id: "tradeLicense", label: "Trade License Status", type: "text", default: "Pending" }
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "einStatus", label: "IRS EIN Status", type: "text", default: "Completed" },
+      { id: "wyFiling", label: "Wyoming Filing Status", type: "text", default: "Completed" },
+      { id: "agentStatus", label: "Registered Agent Status", type: "text", default: "Completed" },
+      { id: "secNotice", label: "SEC Form D Filing", type: "text", default: "Pending" }
     ],
     generator: (data) => `
-# LEGAL COMPLIANCE CHECKLIST
+# US CORPORATE COMPLIANCE CHECKLIST
 **Company**: ${data.companyName}
 
-Below is the active status dashboard of critical government corporate filings and registrations:
+Below is the active status dashboard of critical US federal and Wyoming state corporate filings:
 
 | Registration / License | Status | Compliance Standard |
 | :--- | :--- | :--- |
-| **Corporate PAN** | ${data.panStatus} | Income Tax Act, 1961 |
-| **Company TAN** | ${data.tanStatus} | Income Tax Act, 1961 |
-| **GST Registration** | ${data.gstStatus} | CGST Act, 2017 |
-| **Trade License** | ${data.tradeLicense} | Municipal Corporation Rules |
+| **Wyoming Articles of Incorporation** | ${data.wyFiling} | Wyoming Secretary of State |
+| **IRS EIN (Federal Employer ID)** | ${data.einStatus} | Internal Revenue Service (IRS) |
+| **Registered Agent Service** | ${data.agentStatus} | Wyoming State Statute |
+| **SEC Form D Filing** | ${data.secNotice} | Securities and Exchange Commission |
 
 ---
 
@@ -650,10 +664,10 @@ Ensure all "Pending" registrations are resolved with local compliance agents to 
     name: "16. Pitch Deck Slide Builder",
     description: "Draft structural text scripts and slide summaries for presentation builders.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations" },
-      { id: "problem", label: "Slide 1: Problem Statement", type: "text", default: "Businesses waste hours drafting compliance agreements manually." },
-      { id: "solution", label: "Slide 2: Our Solution", type: "text", default: "A automated, premium legal compiler that builds templates in seconds." },
-      { id: "askAmount", label: "Slide 3: Funding Ask (INR/USD)", type: "text", default: "Raise $5M Seed Round" }
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs" },
+      { id: "problem", label: "Slide 2: Problem Statement", type: "text", default: "Large AI models are expensive and run slow at the edge." },
+      { id: "solution", label: "Slide 3: Our Solution", type: "text", default: "A distributed agent swarm network operating natively at the Edge." },
+      { id: "askAmount", label: "Slide 4: Funding Ask ($)", type: "text", default: "Raise $5M Seed Round at $25M valuation" }
     ],
     generator: (data) => `
 # PITCH DECK OUTLINE
@@ -663,19 +677,19 @@ Ensure all "Pending" registrations are resolved with local compliance agents to 
 
 ### Slide 1: Cover
 **${data.companyName}**
-*Building Innovation. Delivering Impact.*
+*Building Edge Agent Swarms. Delivering Impact.*
 
 ---
 
 ### Slide 2: The Problem
 *   **Statement**: ${data.problem}
-*   Manual errors cost companies legal liabilities.
+*   Standard cloud-based AI networks suffer from severe latency bottlenecks.
 
 ---
 
 ### Slide 3: The Solution
 *   **Statement**: ${data.solution}
-*   High-fidelity documents on-demand.
+*   Local code harness and WebSocket coordinate tunnels executed serverless at the Edge.
 
 ---
 
@@ -687,13 +701,13 @@ Ensure all "Pending" registrations are resolved with local compliance agents to 
   {
     id: "financial_model",
     name: "17. Financial Model Projections",
-    description: "Interactive 5-year financial calculations based on revenue growth models.",
+    description: "Interactive 5-year financial calculations based on revenue growth models in USD ($).",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
-      { id: "initialRev", label: "Year 1 Annual Revenue (INR)", type: "number", default: 4000000 },
-      { id: "growthRate", label: "Yearly Revenue Growth (%)", type: "number", default: 25 },
-      { id: "cogsRate", label: "COGS Ratio (%)", type: "number", default: 18 },
-      { id: "opexRate", label: "OpEx Ratio (%)", type: "number", default: 35 }
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
+      { id: "initialRev", label: "Year 1 Annual Revenue ($)", type: "number", default: 250000 },
+      { id: "growthRate", label: "Yearly Revenue Growth (%)", type: "number", default: 40 },
+      { id: "cogsRate", label: "COGS Ratio (%)", type: "number", default: 15 },
+      { id: "opexRate", label: "OpEx Ratio (%)", type: "number", default: 45 }
     ],
     generator: (data) => {
       const res = window.calculateFinancialModel(
@@ -705,7 +719,7 @@ Ensure all "Pending" registrations are resolved with local compliance agents to 
 
       let rows = "";
       res.forEach(item => {
-        rows += `| Year ${item.year} | ${item.revenue.toLocaleString()} | ${item.cogs.toLocaleString()} | ${item.grossProfit.toLocaleString()} | ${item.totalOpEx.toLocaleString()} | ${item.ebitda.toLocaleString()} | ${item.netProfit.toLocaleString()} |\n`;
+        rows += `| Year ${item.year} | $${item.revenue.toLocaleString()} | $${item.cogs.toLocaleString()} | $${item.grossProfit.toLocaleString()} | $${item.totalOpEx.toLocaleString()} | $${item.ebitda.toLocaleString()} | $${item.netProfit.toLocaleString()} |\n`;
       });
 
       return `
@@ -713,7 +727,7 @@ Ensure all "Pending" registrations are resolved with local compliance agents to 
 
 Modeling forecast for **${data.companyName}** under ${data.growthRate}% annual growth rate assumptions.
 
-| Period | Revenue (INR) | COGS (INR) | Gross Profit (INR) | Operating Expenses (INR) | EBITDA (INR) | Net Income (INR) |
+| Period | Revenue ($) | COGS ($) | Gross Profit ($) | Operating Expenses ($) | EBITDA ($) | Net Income ($) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 ${rows}
 
@@ -724,12 +738,12 @@ ${rows}
   {
     id: "term_sheet",
     name: "18. Term Sheet",
-    description: "General non-binding venture capital term sheet generator.",
+    description: "Venture capital term sheet generator in USD ($) under US corporate laws.",
     fields: [
-      { id: "companyName", label: "Company Name", type: "text", default: "ABC Innovations Private Limited" },
+      { id: "companyName", label: "Company Name", type: "text", default: "NeuronEdge Labs Inc." },
       { id: "investorName", label: "Investor Name", type: "text", default: "RJ Ventures" },
-      { id: "investmentAmount", label: "Investment Amount (INR)", type: "number", default: 50000000 },
-      { id: "preMoneyVal", label: "Pre-Money Valuation (INR)", type: "number", default: 200000000 }
+      { id: "investmentAmount", label: "Investment Amount ($)", type: "number", default: 2000000 },
+      { id: "preMoneyVal", label: "Pre-Money Valuation ($)", type: "number", default: 10000000 }
     ],
     generator: (data) => {
       const postMoney = Number(data.investmentAmount) + Number(data.preMoneyVal);
@@ -744,11 +758,11 @@ This Term Sheet summarizes the principal terms and conditions under which **${da
 
 ## 1. TRANSACTION STRUCTURE
 
-*   **Investment Amount**: INR ${Number(data.investmentAmount).toLocaleString()}
-*   **Pre-Money Valuation**: INR ${Number(data.preMoneyVal).toLocaleString()}
-*   **Post-Money Valuation**: INR ${postMoney.toLocaleString()}
+*   **Investment Amount**: $${Number(data.investmentAmount).toLocaleString()} USD
+*   **Pre-Money Valuation**: $${Number(data.preMoneyVal).toLocaleString()} USD
+*   **Post-Money Valuation**: $${postMoney.toLocaleString()} USD
 *   **Investor Equity Share**: **${equityPct.toFixed(2)}%** on a fully diluted basis.
-*   **Instrument**: Series A Compulsorily Convertible Preference Shares (CCPS).
+*   **Instrument**: Series Seed Compulsorily Convertible Preference Shares (CCPS).
 
 ---
 

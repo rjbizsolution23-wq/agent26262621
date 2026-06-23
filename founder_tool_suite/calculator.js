@@ -81,53 +81,53 @@ function calculateESOPVesting(grantAmount, startDateStr, cliffDateStr, totalMont
 }
 
 /**
- * Computes Indian CTC components from a monthly basic salary input.
- * @param {number} monthlyBasic - Monthly Basic Salary
+ * Computes US Corporate CTC (Cost to Company) components from a monthly basic salary input.
+ * @param {number} monthlyBasic - Monthly Basic Salary (USD)
  * @param {number} annualBonusRate - Annual performance bonus multiplier (e.g. 0.1 for 10%)
  * @returns {Object} Monthly and Annual compensation breakdowns
  */
 function calculateCTCComponents(monthlyBasic, annualBonusRate = 0.1) {
   const basicAnnual = monthlyBasic * 12;
   
-  // HRA (House Rent Allowance): Typically 40% of Basic for non-metros, 50% for metros. Default to 45%.
-  const monthlyHRA = Math.round(monthlyBasic * 0.45);
-  const hraAnnual = monthlyHRA * 12;
+  // Employer FICA: Social Security (6.2% up to cap, simplified) + Medicare (1.45%)
+  const monthlyFICA = Math.round(monthlyBasic * 0.0765);
+  const ficaAnnual = monthlyFICA * 12;
   
-  // Special Allowance: Balances out base payouts
-  const monthlySpecial = Math.round(monthlyBasic * 0.3);
-  const specialAnnual = monthlySpecial * 12;
+  // Employer Health Insurance: Assume standard $550/month contribution
+  const monthlyHealth = 550;
+  const healthAnnual = monthlyHealth * 12;
   
-  // PF (Provident Fund): Employer contribution is usually 12% of Basic
-  const monthlyPF = Math.round(monthlyBasic * 0.12);
-  const pfAnnual = monthlyPF * 12;
+  // 401(k) Match: Assume company matches 4% of Basic Salary
+  const monthly401k = Math.round(monthlyBasic * 0.04);
+  const annual401k = monthly401k * 12;
 
-  // Gratuity: Calculated at 4.81% of Basic (roughly 15 days salary divided by 26 days of work per year)
-  const monthlyGratuity = Math.round(monthlyBasic * 0.0481);
-  const gratuityAnnual = monthlyGratuity * 12;
+  // Other Overhead (FUTA, SUTA, Workers Comp): Estimated at 2% of Basic
+  const monthlyOverhead = Math.round(monthlyBasic * 0.02);
+  const overheadAnnual = monthlyOverhead * 12;
 
-  const monthlyFixed = monthlyBasic + monthlyHRA + monthlySpecial;
+  const monthlyFixed = monthlyBasic + monthlyFICA + monthlyHealth + monthly401k + monthlyOverhead;
   const annualFixed = monthlyFixed * 12;
 
-  const annualPerformanceBonus = Math.round(annualFixed * annualBonusRate);
+  const annualPerformanceBonus = Math.round(basicAnnual * annualBonusRate);
   
-  const annualCTC = annualFixed + pfAnnual + gratuityAnnual + annualPerformanceBonus;
+  const annualCTC = annualFixed + annualPerformanceBonus;
   
   return {
     monthly: {
       basic: monthlyBasic,
-      hra: monthlyHRA,
-      specialAllowance: monthlySpecial,
-      fixedTotal: monthlyFixed,
-      pf: monthlyPF,
-      gratuity: monthlyGratuity
+      fica: monthlyFICA,
+      health: monthlyHealth,
+      match401k: monthly401k,
+      overhead: monthlyOverhead,
+      fixedTotal: monthlyFixed
     },
     annual: {
       basic: basicAnnual,
-      hra: hraAnnual,
-      specialAllowance: specialAnnual,
+      fica: ficaAnnual,
+      health: healthAnnual,
+      match401k: annual401k,
+      overhead: overheadAnnual,
       fixedTotal: annualFixed,
-      pf: pfAnnual,
-      gratuity: gratuityAnnual,
       performanceBonus: annualPerformanceBonus,
       ctcTotal: annualCTC
     }

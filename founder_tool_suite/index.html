@@ -356,12 +356,13 @@
         calcContainer.innerHTML = `
           <h4 class="text-xs font-bold text-gold-500 mb-2 uppercase tracking-wide">Monthly Payroll Estimates</h4>
           <div class="flex flex-col gap-1.5 text-xs">
-            <div class="flex justify-between"><span class="text-slate-400">HRA Benefit:</span><span class="text-white font-semibold">INR ${res.monthly.hra.toLocaleString()}</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Special Allowance:</span><span class="text-white font-semibold">INR ${res.monthly.specialAllowance.toLocaleString()}</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Employer PF Contribution:</span><span class="text-white font-semibold">INR ${res.monthly.pf.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Employer FICA Tax (7.65%):</span><span class="text-white font-semibold">$${res.monthly.fica.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Employer Health Contribution:</span><span class="text-white font-semibold">$${res.monthly.health.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">401(k) Co. Match (4%):</span><span class="text-white font-semibold">$${res.monthly.match401k.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">FUTA/SUTA Overheads (2%):</span><span class="text-white font-semibold">$${res.monthly.overhead.toLocaleString()}</span></div>
             <div class="border-t border-navy-700/50 my-1 pt-1 flex justify-between font-bold">
               <span class="text-gold-500">Projected Annual CTC:</span>
-              <span class="text-white">INR ${res.annual.ctcTotal.toLocaleString()}</span>
+              <span class="text-white">$${res.annual.ctcTotal.toLocaleString()}</span>
             </div>
           </div>
         `;
@@ -375,10 +376,10 @@
         calcContainer.innerHTML = `
           <h4 class="text-xs font-bold text-gold-500 mb-2 uppercase tracking-wide">Year 5 Profitability Outlook</h4>
           <div class="flex flex-col gap-1.5 text-xs">
-            <div class="flex justify-between"><span class="text-slate-400">Year 5 Revenue Forecast:</span><span class="text-white font-semibold">INR ${res[4].revenue.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Year 5 Revenue Forecast:</span><span class="text-white font-semibold">$${res[4].revenue.toLocaleString()}</span></div>
             <div class="flex justify-between"><span class="text-slate-400">Gross Margin:</span><span class="text-emerald-400 font-semibold">${res[4].grossMargin}%</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Year 5 EBITDA:</span><span class="text-white font-semibold">INR ${res[4].ebitda.toLocaleString()}</span></div>
-            <div class="flex justify-between font-bold"><span class="text-gold-500">Year 5 Net Profit:</span><span class="text-white">INR ${res[4].netProfit.toLocaleString()}</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Year 5 EBITDA:</span><span class="text-white font-semibold">$${res[4].ebitda.toLocaleString()}</span></div>
+            <div class="flex justify-between font-bold"><span class="text-gold-500">Year 5 Net Profit:</span><span class="text-white">$${res[4].netProfit.toLocaleString()}</span></div>
           </div>
         `;
       }
