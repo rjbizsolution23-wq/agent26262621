@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Generator, List, Dict, Any
 from saso_registry import AgentRegistry
 from saso_router import AIRouter
+from saso_memory import SASOMemoryManager
 
 class CognitiveOrchestrator:
     def __init__(self, workspace_path: str = ".", autonomous: bool = False):
@@ -14,6 +15,7 @@ class CognitiveOrchestrator:
         self.router = AIRouter()
         self.autonomous = autonomous
         self.log_history = []
+        self.memory = SASOMemoryManager(self.workspace_path / "saso_memory.db")
 
     def log(self, message: str, type: str = "info", agent: str = "System") -> Dict[str, str]:
         """Logs a message with metadata and adds it to history."""
@@ -145,6 +147,11 @@ class CognitiveOrchestrator:
                 full_path.parent.mkdir(parents=True, exist_ok=True)
                 full_path.write_text(action["content"], encoding="utf-8")
                 self.log(f"Successfully wrote file to: {rel_path}", "success")
+                self.memory.add_memory(
+                    f"Successfully wrote file: {rel_path}\nContent snippet:\n{action['content'][:500]}",
+                    "file_operation",
+                    {"path": rel_path}
+                )
                 return f"Success: Wrote file to {rel_path}"
             except Exception as e:
                 self.log(f"Failed to write file {rel_path}: {e}", "error")
@@ -239,6 +246,11 @@ class CognitiveOrchestrator:
                 output = result.stdout + result.stderr
                 if result.returncode == 0:
                     self.log(f"Command succeeded.", "success")
+                    self.memory.add_memory(
+                        f"Successfully executed command: {command}\nOutput:\n{output[:1000]}",
+                        "tool_result",
+                        {"command": command}
+                    )
                     return f"Success: Command returned code 0\nOutput:\n{output}"
                 else:
                     self.log(f"Command failed with code {result.returncode}", "error")
@@ -278,6 +290,11 @@ class CognitiveOrchestrator:
                 output = f"Stdout:\n{res.get('stdout')}\n\nStderr:\n{res.get('stderr')}\n\nDuration: {res.get('duration'):.3f}s, Return Code: {res.get('returncode')}"
                 if res.get("success"):
                     self.log("Python script succeeded.", "success")
+                    self.memory.add_memory(
+                        f"Successfully ran python code (path={path})\nOutput:\n{output[:1000]}",
+                        "tool_result",
+                        {"path": path}
+                    )
                     return f"Success: Python script ran successfully.\nOutput:\n{output}"
                 else:
                     self.log(f"Python script failed with code {res.get('returncode')}", "error")
@@ -295,9 +312,14 @@ class CognitiveOrchestrator:
         
         # 1. Plan Decomposition
         yield self.log("Decomposing task into logical steps...", "plan")
+        
+        # Retrieve relevant memories for the task
+        task_history = self.memory.format_memories_for_prompt(user_request, limit=5)
+        
         planner_system_prompt = (
             "You are the Supreme AI Orchestrator. Your goal is to analyze the user request and break it down into "
             "a sequence of logical steps. For each step, assign the most suitable specialized agent from the list below.\n\n"
+            f"HISTORICAL CONTEXT / RELEVANT PAST EXPERIENCES:\n{task_history}\n\n"
             "AVAILABLE AGENTS:\n"
         )
         for key, agent in self.registry.agents.items():
@@ -390,9 +412,13 @@ class CognitiveOrchestrator:
             yield self.log(f"Starting Step {step['number']}: {step['description']}", "info")
             yield self.log(f"Engaging Agent: {agent_name}", "agent_start", agent_name)
 
+            # Retrieve context relevant to this step goal
+            step_memory = self.memory.format_memories_for_prompt(step['goal'], limit=3)
+
             user_prompt = (
                 f"GLOBAL TASK: {user_request}\n"
                 f"CURRENT STEP GOAL: {step['goal']}\n\n"
+                f"RELEVANT MEMORIES FOR THIS GOAL:\n{step_memory}\n\n"
                 f"PREVIOUS STEPS HISTORY:\n"
                 f"{chr(10).join(context_history[-4:]) if context_history else 'No previous context.'}\n\n"
                 f"Please formulate thoughts, create/modify files, or run commands to complete this step goal. "
@@ -441,4 +467,10 @@ class CognitiveOrchestrator:
                         yield self.log("Self-healing attempts exhausted. Moving to next step with failures.", "error", agent_name)
                         context_history.append(f"Step {step['number']} failed after self-healing.")
 
+        # Record overall execution success to memory
+        self.memory.add_memory(
+            f"Successfully executed swarm task: {user_request}",
+            "conversation",
+            {"request": user_request, "status": "Completed"}
+        )
         yield self.log("Swarm Task Execution Completed!", "success")

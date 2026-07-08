@@ -40,6 +40,7 @@ Thumbs.db
 !saso_router.py
 !saso_server.py
 !python_harness.py
+!saso_memory.py
 
 # Whitelist Credit Repair CRM & Dispute Generator
 !credit_builder_crm/
