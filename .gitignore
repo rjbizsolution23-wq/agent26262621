@@ -50,6 +50,14 @@ Thumbs.db
 !credit_builder_crm/static/**/*
 !credit_builder_crm/static/*
 
+# Whitelist Founder Tool Suite
+!founder_tool_suite/
+!founder_tool_suite/**/*.py
+!founder_tool_suite/requirements.txt
+!founder_tool_suite/index.html
+!founder_tool_suite/.env.example
+!founder_tool_suite/.gitignore
+
 # Python environments
 .venv/
 env/

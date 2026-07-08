@@ -73,7 +73,24 @@
     
     <!-- Sidebar Navigation -->
     <aside class="w-full md:w-80 bg-navy-900/60 border-r border-navy-700/50 p-4 overflow-y-auto flex flex-col gap-2 max-h-[calc(100vh-73px)]">
-      <div class="px-3 py-2">
+      
+      <!-- AI Swarm Generator Wizard -->
+      <div class="p-4 mb-4 rounded-xl bg-gradient-to-br from-gold-500/15 to-navy-800/40 border border-gold-500/30 shadow-lg">
+        <h3 class="text-xs font-extrabold text-gold-500 uppercase tracking-widest flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          AI Swarm Generator
+        </h3>
+        <p class="text-[10px] text-slate-400 mt-1.5 leading-relaxed">Decompose any business idea into 18 custom corporate & VC pitch documents automatically:</p>
+        
+        <div class="mt-3 flex flex-col gap-2">
+          <input type="text" id="ai-wizard-input" placeholder="e.g. Solar grid blockchain sharing" class="w-full px-3 py-2 rounded-lg bg-navy-950/80 border border-navy-700 text-xs text-white placeholder-slate-500 focus:border-gold-500 focus:outline-none transition">
+          <button onclick="triggerAISwarmBuild()" id="ai-wizard-btn" class="w-full py-2 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-200 hover:to-gold-100 text-navy-950 font-bold rounded-lg text-xs uppercase transition tracking-wider flex items-center justify-center gap-1">
+            Build Startup Pack
+          </button>
+        </div>
+      </div>
+
+      <div class="px-3 py-2 border-t border-navy-800/60 pt-4">
         <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Startup Resources</h2>
         <p class="text-[10px] text-slate-500 mt-0.5">Select a form, agreement, or model</p>
       </div>
@@ -530,6 +547,104 @@
     function closePitchDeckPresentation() {
       document.getElementById("pitchdeck-modal").classList.add("hidden");
     }
+
+    async function triggerAISwarmBuild() {
+      const ideaInput = document.getElementById("ai-wizard-input");
+      const idea = ideaInput.value ? ideaInput.value.trim() : "";
+      if (!idea) {
+        alert("Please enter a startup idea!");
+        return;
+      }
+      
+      const overlay = document.getElementById("ai-loading-overlay");
+      const statusText = document.getElementById("ai-loading-status");
+      const submitBtn = document.getElementById("ai-wizard-btn");
+      
+      overlay.classList.remove("hidden");
+      submitBtn.disabled = true;
+      
+      const stages = [
+        "Decomposing startup idea...",
+        "Structuring corporate founders & equity ratios...",
+        "Formulating Wyoming incorporation parameters...",
+        "Calculating 5-year financial projections...",
+        "Drafting employee agreements & VC term sheet...",
+        "Assembling complete 18 startup builder documents..."
+      ];
+      
+      let currentStage = 0;
+      statusText.innerText = stages[0];
+      const interval = setInterval(() => {
+        if (currentStage < stages.length - 1) {
+          currentStage++;
+          statusText.innerText = stages[currentStage];
+        }
+      }, 1500);
+      
+      try {
+        const response = await fetch("/api/generate-docs", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            idea: idea,
+            founder_name: "Ricky Jefferson"
+          })
+        });
+        
+        const data = await response.json();
+        clearInterval(interval);
+        submitBtn.disabled = false;
+        
+        if (data.success || data.variables) {
+          const vars = data.variables;
+          
+          FOUNDER_TOOLS.forEach(tool => {
+            tool.fields.forEach(field => {
+              if (vars[field.id] !== undefined) {
+                field.default = vars[field.id];
+                const inputElement = document.getElementById(`input-${field.id}`);
+                if (inputElement) {
+                  inputElement.value = vars[field.id];
+                }
+              }
+            });
+          });
+          
+          // Trigger updates across calculations and preview panels
+          updateLiveCalculations();
+          updatePreview();
+          selectTool(FOUNDER_TOOLS[0].id);
+          
+          statusText.innerText = "STARTUP BUILT SUCCESSFUL!";
+          setTimeout(() => {
+            overlay.classList.add("hidden");
+          }, 800);
+        } else {
+          alert("Failed to build startup pack: " + (data.error || "Unknown error"));
+          overlay.classList.add("hidden");
+        }
+      } catch (e) {
+        clearInterval(interval);
+        submitBtn.disabled = false;
+        alert("Failed to connect to backend: " + e.message);
+        overlay.classList.add("hidden");
+      }
+    }
   </script>
+
+  <!-- Live Swarm Generating Overlay Loader -->
+  <div id="ai-loading-overlay" class="fixed inset-0 bg-navy-950/90 backdrop-blur-md z-50 hidden flex flex-col justify-center items-center gap-6">
+    <div class="relative h-20 w-20 flex items-center justify-center">
+      <span class="absolute h-16 w-16 rounded-full border-4 border-t-gold-500 border-navy-700/50 animate-spin"></span>
+      <span class="h-3 w-3 rounded-full bg-gold-500 shadow-[0_0_12px_#d4af37]"></span>
+    </div>
+    <div class="text-center">
+      <h3 class="text-lg font-bold text-white tracking-wide">Orchestrating AI Swarm Architect</h3>
+      <p id="ai-loading-status" class="text-xs text-gold-500 mt-1.5 animate-pulse uppercase tracking-widest font-semibold">Decomposing startup idea...</p>
+      <p class="text-[10px] text-slate-500 mt-4 max-w-xs mx-auto">This compiles bylaws, models capital equity, establishes corporate vesting, and projects 5-year financials...</p>
+    </div>
+  </div>
 </body>
 </html>
